@@ -258,7 +258,7 @@ export default function Home({ articles }) {
     <>
       <Head>
         <title>
-          Spencer Sharp - Software designer, founder, and amateur astronaut
+          Balu Babu - Maker, Engineer, Anime Nerd and Aquarist. 
         </title>
         <meta
           name="description"
