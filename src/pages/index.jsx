@@ -257,26 +257,32 @@ export default function Home({ articles }) {
   return (
     <>
       <Head>
-        <title>
-          Balu Babu - Maker, Engineer, Anime Nerd and Aquarist. 
-        </title>
+        <title>Balu Babu - Maker, Engineer, Anime Nerd and Aquarist.</title>
         <meta
           name="description"
-          content="I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms."
+          content="Hey there, I'm Balu. I love to build things and I'm working hard to start my own company. I also enjoy anime and engineering, and I'm always happy to discuss them and more."
         />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software designer, founder, and amateur astronaut.
+            Maker, Engineer, Anime Nerd and Aquarist.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Spencer, a software designer and entrepreneur based in New York
-            City. I’m the founder and CEO of Planetaria, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
-          </p>
+            Hey there, I'm Balu. I love to build things and I'm working hard to
+            start my own company. I also enjoy anime and engineering, and I'm
+            always happy to discuss them and more. Currently building an Open
+            Source API development ecosystem at{' '}
+            <a
+              className="text-sm font-bold text-teal-500 hover:underline"
+              href="https://hoppscotch.io/"
+            >
+              Hoppscotch
+            </a>
+            .{' '}
+          </p>{' '}
           <div className="mt-6 flex gap-6">
+            {' '}
             <SocialLink
               href="https://twitter.com"
               aria-label="Follow on Twitter"
