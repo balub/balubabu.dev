@@ -198,8 +198,8 @@ export default function Home({ articles }) {
             Maker, Engineer, Anime Nerd and Aquarist.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hey there, I'm Balu. I love to build things and I'm working hard to
-            start my own company. I also enjoy anime and engineering, and I'm
+            Hey there, I&apos;m Balu. I love to build things and I&apos;m working hard to
+            start my own company. I also enjoy anime and engineering, and I&apos;m
             always happy to discuss them and more. Currently building an Open
             Source API development ecosystem at{' '}
             <a
