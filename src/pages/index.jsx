@@ -147,7 +147,18 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
+      <Button
+        href="#"
+        variant="secondary"
+        className="group mt-6 w-full"
+        onClick={() =>
+          window.open(
+            'https://drive.google.com/file/d/1Lp0e_0z1XqfQz_WKv9ijAiNz7f78f2sQ/view?usp=drive_link',
+            '_black',
+            'noreferrer'
+          )
+        }
+      >
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
@@ -198,10 +209,10 @@ export default function Home({ articles }) {
             Maker, Engineer, Anime Nerd and Aquarist.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hey there, I&apos;m Balu. I love to build things and I&apos;m working hard to
-            start my own company. I also enjoy anime and engineering, and I&apos;m
-            always happy to discuss them and more. Currently building an Open
-            Source API development ecosystem at{' '}
+            Hey there, I&apos;m Balu. I love to build things and I&apos;m
+            working hard to start my own company. I also enjoy anime and
+            engineering, and I&apos;m always happy to discuss them and more.
+            Currently building an Open Source API development ecosystem at{' '}
             <a
               className="text-sm font-bold text-teal-500 hover:underline"
               href="https://hoppscotch.io/"
