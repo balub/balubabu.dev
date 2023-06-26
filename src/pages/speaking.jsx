@@ -29,15 +29,15 @@ export default function Speaking() {
   return (
     <>
       <Head>
-        <title>Speaking - Spencer Sharp</title>
+        <title>Speaking -Balu Babu</title>
         <meta
           name="description"
-          content="I’ve spoken at events all around the world and been interviewed for many podcasts."
+          content="I’ve spoken at a few events offline and online on various topics."
         />
       </Head>
       <SimpleLayout
-        title="I’ve spoken at events all around the world and been interviewed for many podcasts."
-        intro="One of my favorite ways to share my ideas is live on stage, where there’s so much more communication bandwidth than there is in writing, and I love podcast interviews because they give me the opportunity to answer questions instead of just present my opinions."
+        title="I’ve spoken at a few events offline and online on various topics."
+        intro="I personally really love giving talks at offline events, they are a great way for me to interact with folks who are into the same things I am into and also gives me a reason to work on stuff I may have not done so ordinarily. These are few of the talks I've given over the years and I plan on giving more in the future."
       >
         <div className="space-y-20">
           <SpeakingSection title="Conferences">
