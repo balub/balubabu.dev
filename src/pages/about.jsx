@@ -66,7 +66,7 @@ export default function About() {
 
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>Here are some rapid fire bullets about me:</p>
-              <ul className="list-disc">
+              <ul className="list-disc ">
                 <li>
                   I’m Balu, from India 🇮🇳 and currently like in Bangalore.
                 </li>
@@ -82,7 +82,7 @@ export default function About() {
                   Self-taught programmer still learning new things everyday.
                 </li>
                 <li>
-                  I am learning Japanese🇯🇵 for about 4 years now and am a N3
+                  I am learning Japanese 🇯🇵 for about 4 years now and am a N3
                   level holder in it, studying to get my N1.
                 </li>
                 <li>Love anime, big J-Pop fan.</li>
@@ -91,24 +91,34 @@ export default function About() {
           </div>
           <div className="lg:pl-20">
             <ul role="list">
-              <SocialLink href="#" icon={TwitterIcon}>
+              <SocialLink
+                href="https://twitter.com/AskBaluBabu"
+                icon={TwitterIcon}
+              >
                 Follow on Twitter
               </SocialLink>
-              <SocialLink href="#" icon={InstagramIcon} className="mt-4">
-                Follow on Instagram
-              </SocialLink>
-              <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+
+              <SocialLink
+                href="https://github.com/balub"
+                icon={GitHubIcon}
+                className="mt-4"
+              >
                 Follow on GitHub
               </SocialLink>
-              <SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+              <SocialLink
+                href="https://www.linkedin.com/in/balubabu"
+                icon={LinkedInIcon}
+                className="mt-4"
+              >
                 Follow on LinkedIn
               </SocialLink>
+
               <SocialLink
-                href="mailto:spencer@planetaria.tech"
+                href="mailto:balub997@gmail.com"
                 icon={MailIcon}
                 className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
               >
-                spencer@planetaria.tech
+                balub997@gmail.com
               </SocialLink>
             </ul>
           </div>
