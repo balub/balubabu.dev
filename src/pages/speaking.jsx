@@ -42,41 +42,32 @@ export default function Speaking() {
         <div className="space-y-20">
           <SpeakingSection title="Conferences">
             <Appearance
-              href="#"
-              title="In space, no one can watch you stream — until now"
-              description="A technical deep-dive into HelioStream, the real-time streaming library I wrote for transmitting live video back to Earth."
-              event="SysConf 2021"
+              href="https://www.youtube.com/watch?v=13ZJTe4mvNY"
+              title="Going down the rabbit hole of mechanical keyboards"
+              description="A deep-dive into the world of mechanical keyboards."
+              event="FOSS United Bangalore, March 2023"
               cta="Watch video"
             />
             <Appearance
-              href="#"
-              title="Lessons learned from our first product recall"
-              description="They say that if you’re not embarassed by your first version, you’re doing it wrong. Well when you’re selling DIY space shuttle kits it turns out it’s a bit more complicated."
-              event="Business of Startups 2020"
+              href="https://twitter.com/FOSSUnitedBLR/status/1591400843005218817?s=20"
+              title="Lightning Talk: OpenWSI"
+              description="Gave a short lightning talk on my OpenWSI project."
+              event="FOSS United Bangalore, November 2022"
+              cta="More info"
+            />
+            <Appearance
+              href="https://twitter.com/aakansha1216/status/1578708567741280257?s=20&t=eXr1IxfGLXzh6jgqOr_3ow"
+              title="Building an Open Source Medical Whole Slide Imaging Hardware Device"
+              description="Gave a talk on building an open-source medical hardware device at FOSS United October 2022 Meetup."
+              event="FOSS United Bangalore, October 2022"
+              cta="More info"
+            />
+            <Appearance
+              href="https://www.youtube.com/watch?v=_rhDb5x9kQA"
+              title="Realtime Apps with Server-Side Events"
+              description="A deep-dive into building realtime-apps using server-side events in the React."
+              event="ReactJS Bangalore, April 2022"
               cta="Watch video"
-            />
-          </SpeakingSection>
-          <SpeakingSection title="Podcasts">
-            <Appearance
-              href="#"
-              title="Using design as a competitive advantage"
-              description="How we used world-class visual design to attract a great team, win over customers, and get more press for Planetaria."
-              event="Encoding Design, July 2022"
-              cta="Listen to podcast"
-            />
-            <Appearance
-              href="#"
-              title="Bootstrapping an aerospace company to $17M ARR"
-              description="The story of how we built one of the most promising space startups in the world without taking any capital from investors."
-              event="The Escape Velocity Show, March 2022"
-              cta="Listen to podcast"
-            />
-            <Appearance
-              href="#"
-              title="Programming your company operating system"
-              description="On the importance of creating systems and processes for running your business so that everyone on the team knows how to make the right decision no matter the situation."
-              event="How They Work Radio, September 2021"
-              cta="Listen to podcast"
             />
           </SpeakingSection>
         </div>
