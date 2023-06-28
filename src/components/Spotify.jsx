@@ -7,7 +7,9 @@ export function Spotify() {
   const fetcher = (...args) =>
     fetch('/api/now-playing').then((res) => res.json())
 
-  const { data, error } = useSWR('/api/profile-data', fetcher)
+  const { data, error } = useSWR('/api/profile-data', fetcher, {
+    refreshInterval: 5000,
+  })
 
   return (
     <div
