@@ -11,6 +11,7 @@ import {
   TwitterIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+import { Spotify } from '@/components/Spotify'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
