@@ -66,7 +66,9 @@ export default function About() {
             </h1>
 
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-              <p>Here are some rapid fire bullets about me:</p>
+              <p className="flex text-sm font-medium text-zinc-800 dark:text-zinc-200 ">
+                Here are some rapid fire bullets about me:
+              </p>
               <ul className="list-disc ">
                 <li>
                   I’m Balu, from India 🇮🇳 and currently like in Bangalore.
@@ -87,6 +89,18 @@ export default function About() {
                   level holder in it, studying to get my N1.
                 </li>
                 <li>Love anime, big J-Pop fan.</li>
+              </ul>
+              <p className="flex font-medium text-zinc-800 dark:text-zinc-200 ">
+                At the time of writing, I'm particularly interested in
+                learning/exploring the following:
+              </p>
+              <ul className="list-disc ">
+                <li>Go</li>
+                <li>Kubernetes</li>
+                <li>STM32 ecosystem of MCU's</li>
+                <li>Svelte</li>
+                <li>Designing my own robotics platform like the turtlebot</li>
+                <li>Vim</li>
               </ul>
             </div>
           </div>
