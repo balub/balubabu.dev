@@ -42,6 +42,13 @@ export default function Speaking() {
         <div className="space-y-20">
           <SpeakingSection title="Conferences">
             <Appearance
+              href="https://www.youtube.com/watch?v=WPDn9vHdCuU&t=535s"
+              title="Backend Hottakes"
+              description="Gave a talk where I told folks a few hottakes I have in backend development"
+              event="FOSS United Bangalore, September 2023"
+              cta="Watch video"
+            />
+            <Appearance
               href="https://www.youtube.com/watch?v=13ZJTe4mvNY"
               title="Going down the rabbit hole of mechanical keyboards"
               description="A deep-dive into the world of mechanical keyboards."
