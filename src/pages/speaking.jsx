@@ -29,7 +29,7 @@ export default function Speaking() {
   return (
     <>
       <Head>
-        <title>Speaking -Balu Babu</title>
+        <title>Speaking - Balu Babu</title>
         <meta
           name="description"
           content="I’ve spoken at a few events offline and online on various topics."
