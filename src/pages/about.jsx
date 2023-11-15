@@ -71,14 +71,14 @@ export default function About() {
               </p>
               <ul className="list-disc ">
                 <li>
-                  I’m Balu, from India 🇮🇳 and currently like in Bangalore.
+                  I’m Balu, from India 🇮🇳 and currently live in Bangalore.
                 </li>
                 <li>
-                  I’m working on the next gen Open Source API testing platform
-                  at Hoppscotch ufo🛸.
+                  I’m working on a next gen Open Source API testing platform
+                  at Hoppscotch🛸.
                 </li>
                 <li>
-                  I love working on software🧑‍💻, hardware🔩 all things
+                  I love working on hardware🔩, software🧑‍💻 and all things
                   engineering🦾.
                 </li>
                 <li>

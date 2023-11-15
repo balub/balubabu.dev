@@ -28,7 +28,7 @@ export const resume = [
         company: "Various Companies",
         title: 'Freelance Fullstack Developer',
         logo: logoWork,
-        start: '2109',
+        start: '2019',
         end: '2022',
     },
     {

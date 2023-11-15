@@ -43,7 +43,7 @@ export default function Uses() {
           <ToolsSection title="Workstation">
             <Tool title="14” MacBook Pro, M2 Pro, 16GB RAM (2023)">
               I don't like Apple, but I started using this device because
-              Windows had terrible Docker volumes support, and I did not enjoy
+              Windows has terrible Docker volumes support, and I did not enjoy
               working with WSL. Despite its drawbacks, I’ve come to appreciate
               this machine for its small form factor and its battery life, which
               gives me the freedom to move around without worrying about the
@@ -56,7 +56,7 @@ export default function Uses() {
               battery and a solution to the constant Bluetooth driver issues,
               although I think that's a Windows problem.
             </Tool>
-            <Tool title="27’’ LG and 22’’ Dell FDH displays">
+            <Tool title="27’’ LG and 22’’ Dell IPS FHD displays">
               I can't work without a second monitor, and after trying multiple
               setups over the years, I've settled on one I like with two
               monitors. Both of my monitors have IPS panels, which are a must
