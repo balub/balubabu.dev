@@ -21,7 +21,7 @@ export const resume = [
     {
         company: 'Hoppscotch',
         title: 'Product Engineer (Backend)',
-        logo: logoWork,
+        logo: logoHoppscotch,
         start: '2022',
         end: "2024",
     },
