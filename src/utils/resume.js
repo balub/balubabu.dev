@@ -8,14 +8,22 @@ import { BriefcaseIcon } from '@/components/BriefcaseIcon'
 
 export const resume = [
     {
-        company: 'Hoppscotch',
-        title: 'Product Engineer (Backend)',
+        company: 'Hanomi',
+        title: 'Full Stack Engineering Contractor',
         logo: logoWork,
-        start: '2022',
+        start: '2024',
         end: {
             label: 'Present',
             dateTime: new Date().getFullYear(),
         },
+    },
+
+    {
+        company: 'Hoppscotch',
+        title: 'Product Engineer (Backend)',
+        logo: logoWork,
+        start: '2022',
+        end: "2024",
     },
     {
         company: 'Osure Care Pvt Ltd',
