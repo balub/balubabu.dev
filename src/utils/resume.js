@@ -1,7 +1,7 @@
 import logoHoppscotch from '@/images/logos/hoppscotch.svg'
 import logoHanomi from '@/images/logos/hanomi.svg'
 import logoWork from '@/images/logos/work.svg'
-import { BriefcaseIcon } from '@/components/BriefcaseIcon'
+import logoBriefcase from '@/images/logos/briefcase.svg'
 
 export const resume = [
   {
@@ -25,21 +25,21 @@ export const resume = [
   {
     company: 'Osure Care Pvt Ltd',
     title: 'Project Lead',
-    logo: logoWork,
+    logo: logoBriefcase,
     start: '2020',
     end: '2022',
   },
   {
     company: 'Various Companies',
     title: 'Freelance Fullstack Developer',
-    logo: logoWork,
+    logo: logoBriefcase,
     start: '2019',
     end: '2022',
   },
   {
     company: 'Principal Engineer',
     title: 'SMIDER Technology Pvt Ltd',
-    logo: logoWork,
+    logo: logoBriefcase,
     start: '2018',
     end: '2019',
   },
