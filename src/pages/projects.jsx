@@ -11,39 +11,44 @@ import logoPlanetaria from '@/images/logos/planetaria.svg'
 
 const projects = [
   {
-    name: 'Planetaria',
+    name: 'Corydora',
     description:
-      'Creating technology to empower civilians to explore space on their own terms.',
-    link: { href: 'http://planetaria.tech', label: 'planetaria.tech' },
-    logo: logoPlanetaria,
-  },
-  {
-    name: 'Animaginary',
-    description:
-      'High performance web animation library, hand-written in optimized WASM.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoAnimaginary,
-  },
-  {
-    name: 'HelioStream',
-    description:
-      'Real-time video streaming library, optimized for interstellar transmission.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoHelioStream,
-  },
-  {
-    name: 'cosmOS',
-    description:
-      'The operating system that powers our Planetaria space shuttles.',
-    link: { href: '#', label: 'github.com' },
+      'An open-source QMK-compatible 3x3 macropad. Designed, 3D printed, and sold independently.',
+    link: {
+      href: 'https://github.com/balub/CoryDora',
+      label: 'github.com/balub/CoryDora',
+    },
     logo: logoCosmos,
   },
   {
-    name: 'OpenShuttle',
+    name: 'Raikou',
     description:
-      'The schematics for the first rocket I designed that successfully made it to orbit.',
-    link: { href: '#', label: 'github.com' },
+      'A lightning-fast CLI for managing and reconnecting SSH sessions.Built in Go.',
+    link: {
+      href: 'https://github.com/balub/Raikou',
+      label: 'github.com/balub/Raikou',
+    },
     logo: logoOpenShuttle,
+  },
+  {
+    name: 'Vader',
+    description:
+      'Vader is a lightweight command-line tool for securely executing diagnostic scripts and generating structured environment reports.',
+    link: {
+      href: 'https://github.com/UseVader/Vader',
+      label: 'https://github.com/UseVader/Vader',
+    },
+    logo: logoPlanetaria,
+  },
+  {
+    name: 'Swatch',
+    description:
+      'A visual archive of 3D-printed filament swatches from brands available in India, helping buyers see how a color really looks in print.',
+    link: {
+      href: 'https://github.com/balub/swatch',
+      label: 'github.com/balub/swatch',
+    },
+    logo: logoAnimaginary,
   },
 ]
 
