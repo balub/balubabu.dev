@@ -1,0 +1,80 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import mauritius from './mauritius.jpg'
+import drafts from './drafts.png'
+import tweet from './tweet.jpg'
+
+export const meta = {
+  author: 'Balu Babu',
+  date: '2025-07-08',
+  title: 'I Wrote One Blog. Then Disappeared.',
+  description:
+    'A reflection on the challenges of consistent writing, perfectionism, and my journey from three-draft paralysis to embracing "complete is better than perfect".',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+<Image src={mauritius} alt="Scenic view from Mauritius during my recent trip" />
+
+When I published my first blog post in October 2023, I fully intended it to be the beginning of a consistent writing habit. I even created a dedicated section in Notion, filled with ideas, outlines, and half-written drafts.
+
+And yet that remains the only post I've published so far.
+
+It's not for lack of effort. I've written multiple drafts on various topics from setting up my homelab ( old one at this point, Im building a new minilab more details coming soon ) and building mechanical keyboards to thoughts on containers, full-text search, and other experiments. But I have a habit I typically go through **three drafts** before publishing anything and unless I reach that elusive third draft, the post stays hidden.
+
+<Image
+  src={drafts}
+  alt="Screenshot of my Notion workspace showing multiple unpublished blog drafts"
+/>
+
+## **Why I Started This Blog**
+
+To be clear, this blog was never meant to chase numbers or attract an audience. It exists for me as a place to:
+
+- Document engineering decisions and personal projects
+- Share "build in public" style updates
+- Collect stray ideas, odd thoughts, and creative tangents
+
+Some posts are structured technical guides. Others are casual reflections or fleeting thoughts that pop up mid-task, like _"If two left-handed people shake hands, which hand do they use?"_ I've typically tweeted these musings, but I've wanted a more permanent, personal space to store them. Perhaps I'll create a separate "Brain Dump" section for them someday.
+
+<Image
+  src={tweet}
+  alt="Screenshot of a tweet about random thoughts and musings"
+/>
+
+## **What Got in the Way**
+
+The truth is I find writing difficult.
+
+Not the physical act of typing, but writing the way I want to clearly, thoughtfully, with a tone I'm satisfied with. That's why I follow a three-draft rule: first draft to brain-dump, second to shape it, third to polish. But most posts stall between the first and second drafts. Sometimes the phrasing feels awkward. Sometimes the tone isn't right. When that happens, I abandon the draft.
+
+Another challenge is my hesitation to share work publicly. Even when I build something I'm proud of, I typically show it only to close friends. I rarely broadcast my work or "put it out there." I'm not sure why I've just never felt entirely comfortable doing so.
+
+Ironically, these same friends have consistently urged me to share more to post about my builds, document my process, and stop hiding behind private links and quiet DMs. They're probably right.
+
+This year, I'm working to change this pattern. I'm being more public about my projects. I post more frequently, sometimes on Twitter, sometimes to broader audiences than before. It still feels unusual, but I'm embracing the discomfort.
+
+## **Trying a Different Approach**
+
+Ironically, I've always found it easier to talk about what I've done rather than write about it. Once I start speaking, I remember all the little details the technical choices, the problems I faced, the odd fixes that worked. It all comes back clearly in conversation.
+
+So lately, I've started experimenting with something new using AI to help me convert thoughts into writing. I talk things out sometimes in long rambles and then use AI to summarize and shape them into something more coherent. From there, I step in and connect the dots, adjust the tone, and make it my own.
+
+I'm still figuring out how I feel about this. Part of me worries it's cheating. Another part thinks it's no different from using a keyboard or Grammerly, just another tool in the writing process.
+
+And in keeping with my motto for this year:
+
+**Complete is better than perfect.**
+
+So I'm giving it a try.
+
+## **Moving Forward**
+
+Now I'm taking a different path. I'm releasing my grip on perfection and simply publishing. Not every post will be polished. Some might be brief or less refined. But they'll exist and that's what matters.
+
+I'll aim for a steady rhythm perhaps weekly, perhaps biweekly. The goal is straightforward write more, publish more, overthink less.
+
+If you've made it this far, thank you.
+And if you're just stumbling upon this blog, welcome.
+
+Let's see where this goes. 🚀
