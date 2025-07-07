@@ -7,7 +7,7 @@ export function Spotify() {
   const fetcher = (...args) =>
     fetch('/api/now-playing').then((res) => res.json())
 
-  const { data, error } = useSWR('/api/profile-data', fetcher, {
+  const { data, error } = useSWR('/api/now-playing', fetcher, {
     refreshInterval: 5000,
   })
 
@@ -27,19 +27,18 @@ export function Spotify() {
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          {!data ? 'Not Playing' : data.title}
+          {!data || (!data.isPlaying && !data.lastPlayed)
+            ? 'Not Playing'
+            : data.title}
         </dd>
         <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-          {!data ? 'Not Playing' : data.artist}
+          {!data || (!data.isPlaying && !data.lastPlayed)
+            ? 'Not Playing'
+            : data.isPlaying
+            ? `${data.artist} • Playing now`
+            : `${data.artist} • Last played`}
         </dd>
       </dl>
     </div>
   )
 }
-
-
-
-
-
-
-

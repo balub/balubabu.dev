@@ -1,54 +1,90 @@
-import { getNowPlaying } from '@/lib/spotify';
+import { getNowPlaying, getRecentlyPlayed } from '@/lib/spotify'
 
 export const config = {
-    runtime: 'experimental-edge'
-};
+  runtime: 'experimental-edge',
+}
 
 export default async function handler(req) {
-    const response = await getNowPlaying();
+  const response = await getNowPlaying()
 
-    if (response.status === 204 || response.status > 400) {
-        return new Response(JSON.stringify({ isPlaying: false }), {
-            status: 200,
-            headers: {
-                'content-type': 'application/json'
-            }
-        });
-    }
+  // If something is currently playing, return it
+  if (response.status === 200) {
+    const song = await response.json()
 
-    const song = await response.json();
+    if (song.item !== null) {
+      const isPlaying = song.is_playing
+      const title = song.item.name
+      const artist = song.item.artists.map((_artist) => _artist.name).join(', ')
+      const album = song.item.album.name
+      const albumImageUrl = song.item.album.images[0].url
+      const songUrl = song.item.external_urls.spotify
 
-    if (song.item === null) {
-        return new Response(JSON.stringify({ isPlaying: false }), {
-            status: 200,
-            headers: {
-                'content-type': 'application/json'
-            }
-        });
-    }
-
-    const isPlaying = song.is_playing;
-    const title = song.item.name;
-    const artist = song.item.artists.map((_artist) => _artist.name).join(', ');
-    const album = song.item.album.name;
-    const albumImageUrl = song.item.album.images[0].url;
-    const songUrl = song.item.external_urls.spotify;
-
-    return new Response(
+      return new Response(
         JSON.stringify({
+          album,
+          albumImageUrl,
+          artist,
+          isPlaying,
+          songUrl,
+          title,
+        }),
+        {
+          status: 200,
+          headers: {
+            'content-type': 'application/json',
+            'cache-control': 'public, s-maxage=60, stale-while-revalidate=30',
+          },
+        }
+      )
+    }
+  }
+
+  // If nothing is currently playing, get the last played track
+  try {
+    const recentlyPlayedResponse = await getRecentlyPlayed()
+
+    if (recentlyPlayedResponse.status === 200) {
+      const recentlyPlayed = await recentlyPlayedResponse.json()
+
+      if (recentlyPlayed.items && recentlyPlayed.items.length > 0) {
+        const lastTrack = recentlyPlayed.items[0].track
+        const title = lastTrack.name
+        const artist = lastTrack.artists
+          .map((_artist) => _artist.name)
+          .join(', ')
+        const album = lastTrack.album.name
+        const albumImageUrl = lastTrack.album.images[0].url
+        const songUrl = lastTrack.external_urls.spotify
+
+        return new Response(
+          JSON.stringify({
             album,
             albumImageUrl,
             artist,
-            isPlaying,
+            isPlaying: false,
             songUrl,
-            title
-        }),
-        {
+            title,
+            lastPlayed: true,
+          }),
+          {
             status: 200,
             headers: {
-                'content-type': 'application/json',
-                'cache-control': 'public, s-maxage=60, stale-while-revalidate=30'
-            }
-        }
-    );
+              'content-type': 'application/json',
+              'cache-control': 'public, s-maxage=60, stale-while-revalidate=30',
+            },
+          }
+        )
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching recently played tracks:', error)
+  }
+
+  // Fallback if everything fails
+  return new Response(JSON.stringify({ isPlaying: false }), {
+    status: 200,
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
 }
