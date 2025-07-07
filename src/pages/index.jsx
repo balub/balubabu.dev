@@ -183,7 +183,16 @@ export default function Home({ articles }) {
             Hey there, I&apos;m Balu. I love to build things and I&apos;m
             working hard to start my own company. I also enjoy anime and
             engineering, and I&apos;m always happy to discuss them and more.
-            Currently building an Open Source API development ecosystem at{' '}
+            Currently building intelligent CAD software for mechanical engineers
+            at{' '}
+            <a
+              className="text-sm font-bold text-orange-500 hover:underline"
+              href="https://www.hanomi.ai/"
+            >
+              Hanomi
+            </a>
+            , where we&apos;re rethinking design automation with AI. Previously
+            helped build an open-source API development ecosystem at{' '}
             <a
               className="text-sm font-bold text-teal-500 hover:underline"
               href="https://hoppscotch.io/"
