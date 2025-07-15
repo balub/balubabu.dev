@@ -1,0 +1,217 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import allVotesChart from './talk_votes_all_chart.png'
+import verifiedVotesChart from './talk_votes_verified_chart.png'
+import analysisImage from './terminal_output.png'
+
+export const meta = {
+  author: 'Balu Babu',
+  date: '2025-07-16',
+  title: 'What the Community Chose: OpenHardware Devroom at IndiaFOSS 2025',
+  description:
+    'A detailed look at the community-driven selection process and voting results for the OpenHardware Devroom at IndiaFOSS 2025.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+[IndiaFOSS](https://indiafoss.net/) is a community-driven FOSS conference held annually in Bangalore by the [FOSS United Foundation](https://fossunited.org/). Over the past few years, it has grown into one of the most beloved events in India's open-source calendar drawing technologists, tinkerers, hackers, and creators from across the country.
+
+This year, the IndiaFOSS team decided to try something new: **DevRooms**.
+
+Think of a DevRoom as a mini-conference within the larger event a three-hour focused space where communities can run their own curated tracks. These DevRooms are meant to give smaller groups and niche interest areas a dedicated platform to showcase their work.
+
+As soon as the idea was announced, a few of us [Amit](https://x.com/layogtima), [myself](https://x.com/AskBaluBabu), and several others proposed running an [**OpenHardware-themed DevRoom**](https://forum.fossunited.org/t/call-for-devrooms-for-indiafoss-2025/5290/7?u=balu_b), and we were thrilled when it got selected.
+
+## Call for Proposals
+
+Once we received confirmation, we immediately put out a Call for Proposals (CFP), encouraging folks from across the Indian hardware ecosystem to submit talks. We also personally reached out to makers, engineers or people from the community doing interesting and impactful work in open hardware.
+
+The response was excellent. We received a diverse set of submissions from across the country from first-time speakers to veteran builders.
+
+However, our DevRoom only spans three hours, which meant we could only select five to six talks for the final schedule and rather than making those decisions internally, we did what we always do at [Absurd Industries](https://absurd.industries/) :
+
+> We let the community vote.
+
+## Community Voting
+
+As with previous Absurd events, we believe in involving the community in shaping the final lineup. For this DevRoom, [Amit](https://x.com/layogtima) built and launched a [public voting site](https://absurd.industries/hardware-devroom/voting/) that listed all the submitted talks. Community members could explore the proposals and vote for the five talks they most wanted to see.
+
+Over the course of a few days, we collected votes and watched the numbers roll in. What follows is a breakdown of the results including how many votes each talk received (both verified and unverified), how we interpreted those results, and how we ultimately selected the final set of talks.
+
+## Results and Analysis
+
+### What Counts as a "Verified Vote"?
+
+As part of the voting process, we added a simple email verification step to distinguish between verified and unverified votes:
+
+- Once a user submitted their talk preferences and provided an email address, a verification link was sent to that email.
+- Only when the user clicked the link did we count their votes as verified.
+
+This helped reduce spam, accidental duplicates and gave us two data sets to work with:
+
+1. **All Votes:** Includes every submission (verified + unverified).
+2. **Verified Votes Only:** Filters to include only users who completed email verification.
+
+**Note:** As part of this, we excluded all votes from our internal test account (`testwsi098@gmail.com`) to ensure accurate results.
+
+### Graph 1 – All Votes (Verified + Unverified)
+
+The graph below displays how many votes each talk received in total, including both verified and unverified submissions.
+
+<Image
+  src={allVotesChart}
+  alt="Bar chart showing all votes (verified + unverified) received by each talk proposal"
+/>
+
+### Graph 2 – Verified Votes Only
+
+In contrast, this graph shows only the votes from verified email addresses.
+
+<Image
+  src={verifiedVotesChart}
+  alt="Bar chart showing only verified votes received by each talk proposal"
+/>
+
+### Interpretation of Results
+
+<Image src={analysisImage} alt="Summary of voting results and analysis" />
+
+In total, we received **41** votes across all submissions. Of these, **30** were from verified users (confirmed via email), while **11** were from unverified users.
+
+Interestingly, while the top three talks remained the same across both datasets, the bottom two positions shifted when filtering out unverified votes.
+
+To ensure the selection process was as fair and transparent as possible, we decided to base the final selection only on verified votes. We believe this approach reduces noise and best reflects the intent of participants who fully engaged with the voting process.
+
+### How the Analysis Was Done
+
+For those curious about the technical side of things, here's the script we used to analyze the submissions and generate all the graphs.
+
+```python
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+from collections import Counter
+
+with open("data/extracted-votes/votes-2025-07-14T15-05-47-215Z.json", "r") as f:
+    data = json.load(f)
+
+# Count voters (excluding testwsi098@gmail.com)
+total_voters = 0
+verified_voters = 0
+unverified_voters = 0
+
+for voter in data["all_votes"]:
+    email = voter.get("email")
+
+    # Skip this specific email
+    if email == "testwsi098@gmail.com":
+        continue
+
+    total_voters += 1
+    verified = voter.get("verified", False)
+
+    if verified:
+        verified_voters += 1
+    else:
+        unverified_voters += 1
+
+print(
+    f"Total number of people who voted (excluding testwsi098@gmail.com): {total_voters}")
+print(f"Total number of verified emails: {verified_voters}")
+print(f"Total number of unverified emails: {unverified_voters}")
+print()
+
+vote_titles_all = []
+vote_titles_verified = []
+
+for voter in data["all_votes"]:
+    email = voter.get("email")
+    verified = voter.get("verified", False)
+
+    # Skip this specific email
+    if email == "testwsi098@gmail.com":
+        continue
+
+    for vote in voter.get("votes", []):
+        title = vote.get("title")
+        if title:
+            vote_titles_all.append(title)
+            if verified:
+                vote_titles_verified.append(title)
+
+# Count votes
+vote_counts_all = Counter(vote_titles_all)
+vote_counts_verified = Counter(vote_titles_verified)
+
+df_all = pd.DataFrame(vote_counts_all.items(), columns=[
+                      "Talk Title", "Vote Count"])
+df_verified = pd.DataFrame(vote_counts_verified.items(), columns=[
+                           "Talk Title", "Vote Count"])
+
+df_all = df_all.sort_values("Vote Count", ascending=False)
+df_verified = df_verified.sort_values("Vote Count", ascending=False)
+
+df_all.to_csv("talk_vote_counts_all.csv", index=False)
+df_verified.to_csv("talk_vote_counts_verified_only.csv", index=False)
+
+# Plot All Votes (excluding testwsi098)
+plt.figure(figsize=(12, 8))
+plt.barh(df_all["Talk Title"], df_all["Vote Count"])
+plt.xlabel("Number of Votes")
+plt.title("All Votes per Talk (Excluding testwsi098)")
+plt.gca().invert_yaxis()
+plt.tight_layout()
+plt.savefig("talk_votes_all_chart.png")
+plt.show()
+
+# Plot Verified Votes Only
+plt.figure(figsize=(12, 8))
+plt.barh(df_verified["Talk Title"], df_verified["Vote Count"])
+plt.xlabel("Number of Votes")
+plt.title("Verified Votes per Talk (Excluding testwsi098)")
+plt.gca().invert_yaxis()
+plt.tight_layout()
+plt.savefig("talk_votes_verified_chart.png")
+plt.show()
+
+# Compare Top 5 Talks: All vs Verified Only
+top_all = df_all.head(5).reset_index(drop=True)
+top_verified = df_verified.head(5).reset_index(drop=True)
+
+print("Top 5 Talks (All Votes):")
+print(top_all)
+print("\nTop 5 Talks (Verified Votes Only):")
+print(top_verified)
+
+differences = set(top_all["Talk Title"]) ^ set(top_verified["Talk Title"])
+if differences:
+    print("\nTalks that differ between the two top 5 lists:")
+    for title in differences:
+        print(f"- {title}")
+else:
+    print("\n✅ No difference in the top 5 talks between verified and all votes.")
+```
+
+### Data Access
+
+The raw voting data includes email addresses and user selections, so we're not publishing it publicly to protect user privacy.
+
+If you're interested in reviewing the data for any reason, feel free to reach out. We may be able to share an obfuscated version after redacting personal information.
+
+### And Now — The Final Selection
+
+Now for the part you've all been waiting for.
+
+Based on the analysis outlined above, and using only verified votes to ensure fairness and accuracy, here are the final talks selected for the OpenHardware DevRoom at IndiaFOSS 2025:
+
+- **Homelabbing with bare metal**
+- **VoltQuest: Open Source Hardware Gaming**
+- **CoryDora: A Macropad, A Supply Chain, and A Case for Local Manufacturing**
+- **JIgIta - jump to soldering joy from pain**
+- **Because Glancing at Your Phone While Riding 2 Wheelers Is Dumb !!!**
+
+Given that many of the selected talks are lightning talks and may not take up the full time slot, we've also selected one additional talk as a backup to ensure we have a complete and flexible lineup:
+
+- **Makerville Badge**
+
+We're incredibly grateful to everyone who submitted proposals, participated in the vote, and helped shape this DevRoom. We can't wait to see you at the event!
