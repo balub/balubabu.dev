@@ -180,19 +180,20 @@ export default function Home({ articles }) {
             Maker, Engineer, Anime Nerd and Aquarist.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hey there, I&apos;m Balu. I love to build things and I&apos;m
-            working hard to start my own company. I also enjoy anime and
-            engineering, and I&apos;m always happy to discuss them and more.
-            Currently building intelligent CAD software for mechanical engineers
-            at{' '}
+            Hey there, I&apos;m Balu! I love building things. These days,
+            I&apos;m focused on building my own company and bringing new open
+            hardware products to life. I&apos;m passionate about engineering and
+            anime, and I&apos;m always happy to chat about both (and more).
+            Previously, I built intelligent CAD software for mechanical
+            engineers at{' '}
             <a
               className="text-sm font-bold text-orange-500 hover:underline"
               href="https://www.hanomi.ai/"
             >
               Hanomi
             </a>
-            , where we&apos;re rethinking design automation with AI. Previously
-            helped build an open-source API development ecosystem at{' '}
+            , where we reimagined design automation with AI. I also helped build
+            the open-source API development ecosystem at{' '}
             <a
               className="text-sm font-bold text-teal-500 hover:underline"
               href="https://hoppscotch.io/"

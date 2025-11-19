@@ -9,10 +9,7 @@ export const resume = [
     title: 'Full Stack Engineering Contractor',
     logo: logoHanomi,
     start: '2024',
-    end: {
-      label: 'Present',
-      dateTime: new Date().getFullYear(),
-    },
+    end: '2025',
   },
 
   {
