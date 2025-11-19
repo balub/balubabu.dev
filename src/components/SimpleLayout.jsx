@@ -12,7 +12,9 @@ export function SimpleLayout({ title, intro, children }) {
           {intro}
         </p>
       </header>
-      <div className={clsx('mt-16 sm:mt-20', children.className)}>{children}</div>
+      {children && (
+        <div className={clsx('mt-16 sm:mt-20', children.className)}>{children}</div>
+      )}
     </Container>
   )
 }
