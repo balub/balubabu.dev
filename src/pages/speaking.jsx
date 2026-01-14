@@ -42,6 +42,22 @@ export default function Speaking() {
         <div className="space-y-20">
           <SpeakingSection title="Conferences">
             <Appearance
+              href="https://www.youtube.com/watch?v=UiJbgOzwvzU&t=252s"
+              title="CoryDora: A Macropad, A Supply Chain, and A Case for Local Manufacturing"
+              description="Using the CoryDora macropad as a case study, this presentation argues for strengthening India's local manufacturing ecosystem and supporting makers to reduce dependence on fragile global supply chains"
+              event="IndiaFOSS 2025, September 2025"
+              cta="Watch video"
+            />
+            <Appearance
+              href="https://www.youtube.com/watch?v=pFYOFzUogiU"
+              title="Building Open Hardware with FOSS"
+              description="talk I gave on the challenges of building hardware projects and how using FOSS can make it easier."
+              event="ChennaiFOSS 2.0, April 2024"
+              cta="Watch video"
+            />
+
+
+            <Appearance
               href="https://www.youtube.com/watch?v=WPDn9vHdCuU&t=535s"
               title="Backend Hottakes"
               description="Gave a talk where I told folks a few hottakes I have in backend development"
