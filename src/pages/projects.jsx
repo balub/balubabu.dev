@@ -3,6 +3,8 @@ import Image from 'next/image'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { featuredProjects } from '@/data/projects'
+import { getGitHubProjects } from '@/lib/githubProjects'
 import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoCosmos from '@/images/logos/cosmos.svg'
 import logoHelioStream from '@/images/logos/helio-stream.svg'
@@ -12,66 +14,16 @@ import logoVader from '@/images/logos/vader.png'
 import logoBriefcase from '@/images/logos/briefcase.svg'
 import logoWork from '@/images/logos/work.svg'
 
-const projects = [
-  {
-    name: 'Vader',
-    description:
-      'Vader is a lightweight command-line tool for securely executing diagnostic scripts and generating structured environment reports.',
-    links: {
-      github: 'https://github.com/UseVader/Vader',
-      website: 'https://usevader.dev',
-    },
-    logo: logoVader,
-  },
-  {
-    name: 'swift-prints',
-    description:
-      'A simple tool that estimates 3D print costs using material, time, and basic overhead.',
-    links: {
-      github: 'https://github.com/balub/swift-prints',
-      website: 'https://autofab.app/',
-    },
-    logo: logoBriefcase,
-  },
-  {
-    name: 'CoryDora',
-    description:
-      'An open-source QMK-compatible 3x3 macropad. Designed, 3D printed, and sold independently.',
-    links: {
-      github: 'https://github.com/balub/CoryDora',
-    },
-    logo: logoCosmos,
-  },
-  {
-    name: 'Raikou',
-    description:
-      'A lightning-fast CLI for managing and reconnecting SSH sessions. Built in Go.',
-    links: {
-      github: 'https://github.com/balub/Raikou',
-    },
-    logo: logoOpenShuttle,
-  },
-  {
-    name: 'Swatch',
-    description:
-      'A visual archive of 3D-printed filament swatches from brands available in India, helping buyers see how a color really looks in print.',
-    links: {
-      github: 'https://github.com/balub/swatch',
-      website: 'https://swatch.balubabu.dev',
-    },
-    logo: logoAnimaginary,
-  },
-  {
-    name: 'thinkbeforeyouping.me',
-    description:
-      'A tiny, universal clarity tool that helps people think before they ping someone for help.',
-    links: {
-      github: 'https://github.com/balub/thinkbeforeyouping.me',
-      website: 'https://thinkbeforeyouping.me',
-    },
-    logo: logoWork,
-  },
-]
+const logos = {
+  animaginary: logoAnimaginary,
+  briefcase: logoBriefcase,
+  cosmos: logoCosmos,
+  helioStream: logoHelioStream,
+  openShuttle: logoOpenShuttle,
+  planetaria: logoPlanetaria,
+  vader: logoVader,
+  work: logoWork,
+}
 
 function LinkIcon(props) {
   return (
@@ -97,7 +49,79 @@ function GitHubIcon(props) {
   )
 }
 
-export default function Projects() {
+function ProjectCard({ project }) {
+  const logo = logos[project.logo] || logoWork
+
+  return (
+    <Card as="li" className="flex flex-col">
+      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+        <Image src={logo} alt="" className="h-8 w-8" unoptimized />
+      </div>
+      <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+        <Card.Link href={project.links.github || project.links.website}>
+          {project.name}
+        </Card.Link>
+      </h2>
+      <Card.Description>{project.description}</Card.Description>
+      <div className="relative z-10 mt-auto flex items-center gap-4 pt-6">
+        {project.links.github && (
+          <a
+            href={project.links.github}
+            className="group flex items-center gap-2 text-sm font-medium text-zinc-400 transition hover:text-teal-500 dark:text-zinc-200"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHubIcon className="h-5 w-5 flex-none transition group-hover:text-teal-500" />
+            <span className="text-xs">Code</span>
+          </a>
+        )}
+        {project.links.website && (
+          <a
+            href={project.links.website}
+            className="group flex items-center gap-2 text-sm font-medium text-zinc-400 transition hover:text-teal-500 dark:text-zinc-200"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkIcon className="h-5 w-5 flex-none transition group-hover:text-teal-500" />
+            <span className="text-xs">Visit</span>
+          </a>
+        )}
+      </div>
+    </Card>
+  )
+}
+
+function ProjectGrid({ projects }) {
+  return (
+    <ul
+      role="list"
+      className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {projects.map((project) => (
+        <ProjectCard project={project} key={project.repo || project.name} />
+      ))}
+    </ul>
+  )
+}
+
+export async function getStaticProps() {
+  let githubProjects = []
+
+  try {
+    githubProjects = await getGitHubProjects()
+  } catch (error) {
+    console.warn(error)
+  }
+
+  return {
+    props: {
+      githubProjects,
+    },
+    revalidate: 60 * 60 * 24,
+  }
+}
+
+export default function Projects({ githubProjects }) {
   return (
     <>
       <Head>
@@ -109,55 +133,24 @@ export default function Projects() {
       </Head>
       <SimpleLayout
         title="Things I’ve made trying to put my dent in the universe."
-        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+        intro="I’ve worked on tons of little projects over the years. These are the ones I keep closest at hand, followed by a living archive of public repositories from GitHub."
       >
-        <ul
-          role="list"
-          className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {projects.map((project) => (
-            <Card as="li" key={project.name} className="flex flex-col">
-              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                <Image
-                  src={project.logo}
-                  alt=""
-                  className="h-8 w-8"
-                  unoptimized
-                />
-              </div>
-              <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                <Card.Link href={project.links.github || project.links.website}>
-                  {project.name}
-                </Card.Link>
-              </h2>
-              <Card.Description>{project.description}</Card.Description>
-              <div className="relative z-10 mt-auto flex items-center gap-4 pt-6">
-                {project.links.github && (
-                  <a
-                    href={project.links.github}
-                    className="group flex items-center gap-2 text-sm font-medium text-zinc-400 transition hover:text-teal-500 dark:text-zinc-200"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <GitHubIcon className="h-5 w-5 flex-none transition group-hover:text-teal-500" />
-                    <span className="text-xs">Code</span>
-                  </a>
-                )}
-                {project.links.website && (
-                  <a
-                    href={project.links.website}
-                    className="group flex items-center gap-2 text-sm font-medium text-zinc-400 transition hover:text-teal-500 dark:text-zinc-200"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <LinkIcon className="h-5 w-5 flex-none transition group-hover:text-teal-500" />
-                    <span className="text-xs">Visit</span>
-                  </a>
-                )}
-              </div>
-            </Card>
-          ))}
-        </ul>
+        <ProjectGrid projects={featuredProjects} />
+
+        {githubProjects.length > 0 && (
+          <section className="mt-20">
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+              More from GitHub
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
+              A running archive of public projects with enough context to be
+              useful outside the repo.
+            </p>
+            <div className="mt-10">
+              <ProjectGrid projects={githubProjects} />
+            </div>
+          </section>
+        )}
       </SimpleLayout>
     </>
   )
