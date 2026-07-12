@@ -225,13 +225,18 @@ function Resume() {
 function GetInTouch() {
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        Say hi
+      <h2 className="flex items-center gap-1.5 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        Say hi{' '}
+        <span className="text-xs" aria-hidden="true">
+          👋
+        </span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        I enjoy talking to people building unusual software, hardware, and
-        manufacturing systems. Reach out if you want to collaborate, invite me
-        to speak, or exchange overly ambitious project ideas.
+        Have an ambitious idea? Building something interesting? Or just want to
+        say hello?
+      </p>
+      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        I&apos;d love to hear from you.
       </p>
       <Button
         href="mailto:balub997@gmail.com"
