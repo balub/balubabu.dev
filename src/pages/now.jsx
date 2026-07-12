@@ -1,23 +1,22 @@
 import React from 'react'
-import Head from 'next/head'
 import ReactMarkdown from 'react-markdown'
+import { SEO } from '@/components/SEO'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { formatDate } from '@/lib/formatDate'
 import fs from 'fs'
 import path from 'path'
+import matter from 'gray-matter'
 
-export default function Now({ content }) {
+export default function Now({ content, updated }) {
   return (
     <>
-      <Head>
-        <title>Now - Balu Babu</title>
-        <meta
-          name="description"
-          content="What I'm currently working on, thinking about, and focusing on."
-        />
-      </Head>
+      <SEO
+        title="Now - Balu Babu"
+        description="What I'm currently working on, thinking about, and focusing on."
+      />
       <SimpleLayout
         title="What I'm doing now"
-        intro={`Last updated: January 10, 2026`}
+        intro={`Last updated: ${formatDate(updated)}`}
       >
         <div className="prose-zinc prose dark:prose-invert">
           <div className="mt-8">
@@ -162,14 +161,16 @@ export default function Now({ content }) {
 }
 
 export async function getStaticProps() {
-  const content = fs.readFileSync(
+  const raw = fs.readFileSync(
     path.join(process.cwd(), 'src', 'content', 'now.md'),
     'utf8'
   )
+  const { content, data } = matter(raw)
 
   return {
     props: {
       content,
+      updated: String(data.updated ?? ''),
     },
   }
 }

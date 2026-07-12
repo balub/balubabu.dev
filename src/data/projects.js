@@ -4,7 +4,7 @@ export const featuredProjects = [
   {
     name: 'Vader',
     description:
-      'Vader is a lightweight command-line tool for securely executing diagnostic scripts and generating structured environment reports.',
+      'Redefining how on-call should feel for engineering teams, starting with a CLI for securely executing diagnostic scripts and generating structured environment reports.',
     links: {
       github: 'https://github.com/UseVader/Vader',
       website: 'https://usevader.dev',
@@ -15,7 +15,7 @@ export const featuredProjects = [
   {
     name: 'autofab',
     description:
-      'A simple tool that estimates 3D print costs using material, time, and basic overhead.',
+      'One-click online 3D printing on demand. Started life as Swift Prints, a print-cost estimator, and evolved into a full manufacturing platform.',
     links: {
       github: 'https://github.com/balub/swift-prints',
       website: 'https://autofab.app/',

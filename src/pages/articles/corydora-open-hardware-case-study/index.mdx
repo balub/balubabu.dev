@@ -1,0 +1,67 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Balu Babu',
+  date: '2026-07-11',
+  title: 'CoryDora: What Shipping an Open Hardware Macropad Taught Me',
+  description:
+    'A case study of CoryDora — designing, manufacturing, and selling an open-source macropad from India, and why the hardest part was never the electronics.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+{/* TODO(balu): add a hero photo of CoryDora here before publishing */}
+
+CoryDora is an open-source, QMK-compatible 3×3 macropad. I designed it,
+3D printed it, and sold it independently — no factory, no distributor, no
+crowdfunding campaign. Just me, a printer, and a bill of materials.
+
+And yes, it's named after the corydoras catfish. The aquarist in me was
+never going to let a naming opportunity like that go.
+
+## Why a macropad?
+
+A macropad is close to the perfect first hardware product. It's small enough
+that one person can own the entire stack — PCB, firmware, enclosure,
+packaging — but real enough that every hard lesson about making physical
+products shows up in miniature: sourcing, tolerances, assembly time,
+shipping, support.
+
+{/* TODO(balu): a paragraph on the actual design decisions — switches,
+    layout, why 3x3 — and a photo of the internals */}
+
+## The part nobody warns you about: the supply chain
+
+The electronics were the easy part. The hard part was everything around
+them — getting components reliably, at sane prices, on timelines you can
+actually promise a customer. When your product depends on parts crossing an
+ocean, your product is only as reliable as the most fragile link in that
+chain.
+
+That experience turned into a talk at IndiaFOSS 2025:
+[CoryDora: A Macropad, A Supply Chain, and A Case for Local Manufacturing](https://www.youtube.com/watch?v=UiJbgOzwvzU).
+The short version of the argument: if we want more makers in India shipping
+real hardware, we need a local manufacturing ecosystem they can lean on —
+not one where every prototype depends on a fragile global supply chain.
+
+{/* TODO(balu): numbers make this section land — units sold, cost breakdown,
+    lead times, whatever you're comfortable sharing */}
+
+## Going smaller: Pigmy-CoryDora
+
+The follow-up, [Pigmy-CoryDora](https://github.com/balub/Pigmy-CoryDora),
+is a compact 3-key version built around the Glyph Mini RP2040. Smaller
+footprint, same personality — and a chance to apply everything the first
+version taught me.
+
+## What I'd tell you if you're thinking about it
+
+Everything — hardware designs, firmware, and enclosure files — is open
+source in the [CoryDora repo](https://github.com/balub/CoryDora). If you're
+in India and thinking about making your own hardware product: the
+electronics will not be your bottleneck. Plan for the boring parts, because
+the boring parts are the product.
+
+If any of this resonates, I gave an earlier talk at ChennaiFOSS on
+[building open hardware with FOSS tools](https://www.youtube.com/watch?v=pFYOFzUogiU)
+that covers the toolchain side of the story.

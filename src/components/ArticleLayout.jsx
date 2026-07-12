@@ -1,7 +1,7 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { Container } from '@/components/Container'
+import { SEO } from '@/components/SEO'
 import { Prose } from '@/components/Prose'
 import { formatDate } from '@/lib/formatDate'
 
@@ -32,10 +32,12 @@ export function ArticleLayout({
 
   return (
     <>
-      <Head>
-        <title>{`${meta.title} - Balu Babu`}</title>
-        <meta name="description" content={meta.description} />
-      </Head>
+      <SEO
+        title={`${meta.title} - Balu Babu`}
+        description={meta.description}
+        type="article"
+        publishedTime={meta.date}
+      />
       <Container className="mt-16 lg:mt-32">
         <div className="xl:relative">
           <div className="mx-auto max-w-2xl">

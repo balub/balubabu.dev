@@ -1,17 +1,15 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { SEO } from '@/components/SEO'
 import {
   GitHubIcon,
-  InstagramIcon,
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
-import { Spotify } from '@/components/Spotify'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -41,13 +39,10 @@ function MailIcon(props) {
 export default function About() {
   return (
     <>
-      <Head>
-        <title>About - Balu Babu</title>
-        <meta
-          name="description"
-          content="I’m Balu Babu. I live in Bangalore,India where I build stuff."
-        />
-      </Head>
+      <SEO
+        title="About - Balu Babu"
+        description="I’m Balu Babu. I live in Bangalore, India where I build software, hardware, and everything in between."
+      />
       <Container className="mt-16 sm:mt-32">
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
           <div className="lg:pl-20">
@@ -74,8 +69,14 @@ export default function About() {
                   I’m Balu, from India 🇮🇳 and currently live in Bangalore.
                 </li>
                 <li>
-                  I’m working on a next gen Open Source API testing platform
-                  at Hoppscotch🛸.
+                  I’m working full-time on{' '}
+                  <a
+                    href="https://usevader.dev"
+                    className="font-medium text-teal-500 hover:underline"
+                  >
+                    Vader
+                  </a>
+                  , redefining how on-call should feel for engineering teams.
                 </li>
                 <li>
                   I love working on hardware🔩, software🧑‍💻 and all things
@@ -85,22 +86,22 @@ export default function About() {
                   Self-taught programmer still learning new things everyday.
                 </li>
                 <li>
-                  I am learning Japanese 🇯🇵 for about 4 years now and am a N3
-                  level holder in it, studying to get my N1.
+                  I&apos;ve been learning Japanese 🇯🇵 for several years and
+                  hold an N3 certificate — taking a break from active study for
+                  now.
                 </li>
                 <li>Love anime, big J-Pop fan.</li>
               </ul>
               <p className="flex font-medium text-zinc-800 dark:text-zinc-200 ">
-                At the time of writing, I'm particularly interested in
+                At the time of writing, I’m particularly interested in
                 learning/exploring the following:
               </p>
               <ul className="list-disc ">
                 <li>Go</li>
                 <li>Kubernetes</li>
-                <li>STM32 ecosystem of MCU's</li>
-                <li>Svelte</li>
-                <li>Designing my own robotics platform like the turtlebot</li>
-                <li>Vim</li>
+                <li>Embedded systems &amp; hardware (STM32, RP2040)</li>
+                <li>Physical AI</li>
+                <li>Building tooling to make hardware development more accessible</li>
               </ul>
             </div>
           </div>

@@ -15,7 +15,8 @@ export async function generateRssFeed() {
 
   let feed = new Feed({
     title: author.name,
-    description: 'Your blog description',
+    description:
+      'Writing from Balu Babu on software, open hardware, manufacturing, and the maker ecosystem in India.',
     author,
     id: siteUrl,
     link: siteUrl,

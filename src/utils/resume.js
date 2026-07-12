@@ -34,8 +34,8 @@ export const resume = [
     end: '2022',
   },
   {
-    company: 'Principal Engineer',
-    title: 'SMIDER Technology Pvt Ltd',
+    company: 'SMIDER Technology Pvt Ltd',
+    title: 'Principal Engineer',
     logo: logoBriefcase,
     start: '2018',
     end: '2019',

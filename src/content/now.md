@@ -1,3 +1,7 @@
+---
+updated: '2026-01-10'
+---
+
 ## What am I up to this month
 
 - Got into [the residency](https://www.residencyblr.com) to rebuild how on-call works at [Vader](https://usevader.dev/).
@@ -18,4 +22,4 @@
 - Redefining how on-call should feel with, [Vader](https://usevader.dev/).
 - Our team at Absurd worked really hard getting everything ready for our booth at IndiaFOSS.
 - My annual pilgrimage to [IndiaFOSS 2025](https://fossunited.org/indiafoss/2025), cracked a lot of jokes at the [Open Hardware Devroom](https://www.youtube.com/watch?v=FtF-I0-wJGo&t=10312s) there and gave a talk on [CoryDora: A Macropad, A Supply Chain, and A Case for Local Manufacturing](https://youtu.be/FtF-I0-wJGo) too. I also moderated the Birds of a Feather session on [Revitalizing the Bengaluru FOSS United Community](https://forum.fossunited.org/t/propose-birds-of-a-feather-bof-sessions-at-indiafoss-2025/5647/22).
-- Attended the [Maintainer Summit 2025](https://fossunited.org/c/indiafoss/maintainer-summit-2025) on 19th Sept; it was fun, you can read more about it (here)[].
+- Attended the [Maintainer Summit 2025](https://fossunited.org/c/indiafoss/maintainer-summit-2025) on 19th Sept; it was fun.

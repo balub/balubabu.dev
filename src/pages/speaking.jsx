@@ -1,6 +1,6 @@
-import Head from 'next/head'
-
+import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
+import { SEO } from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 
@@ -28,13 +28,10 @@ function Appearance({ title, description, event, cta, href }) {
 export default function Speaking() {
   return (
     <>
-      <Head>
-        <title>Speaking - Balu Babu</title>
-        <meta
-          name="description"
-          content="I’ve spoken at a few events offline and online on various topics."
-        />
-      </Head>
+      <SEO
+        title="Speaking - Balu Babu"
+        description="Talks I’ve given at conferences and meetups on open hardware, local manufacturing, backend engineering, and more."
+      />
       <SimpleLayout
         title="I’ve spoken at a few events offline and online on various topics."
         intro="I personally really love giving talks at offline events, they are a great way for me to interact with folks who are into the same things I am into and also gives me a reason to work on stuff I may have not done so ordinarily. These are few of the talks I've given over the years and I plan on giving more in the future."
@@ -51,7 +48,7 @@ export default function Speaking() {
             <Appearance
               href="https://www.youtube.com/watch?v=pFYOFzUogiU"
               title="Building Open Hardware with FOSS"
-              description="talk I gave on the challenges of building hardware projects and how using FOSS can make it easier."
+              description="A talk on the challenges of building hardware projects and how FOSS tooling can make the journey easier."
               event="ChennaiFOSS 2.0, April 2024"
               cta="Watch video"
             />
@@ -60,7 +57,7 @@ export default function Speaking() {
             <Appearance
               href="https://www.youtube.com/watch?v=WPDn9vHdCuU&t=535s"
               title="Backend Hottakes"
-              description="Gave a talk where I told folks a few hottakes I have in backend development"
+              description="A collection of my hot takes on backend development, delivered live to a room that didn’t always agree."
               event="FOSS United Bangalore, September 2023"
               cta="Watch video"
             />
@@ -88,11 +85,30 @@ export default function Speaking() {
             <Appearance
               href="https://www.youtube.com/watch?v=_rhDb5x9kQA"
               title="Realtime Apps with Server-Side Events"
-              description="A deep-dive into building realtime-apps using server-side events in the React."
+              description="A deep dive into building realtime apps with server-sent events in React."
               event="ReactJS Bangalore, April 2022"
               cta="Watch video"
             />
           </SpeakingSection>
+        </div>
+        <div className="mt-24 rounded-2xl border border-zinc-100 p-8 dark:border-zinc-700/40">
+          <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+            Want me to speak at your event?
+          </h2>
+          <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
+            I’m always up for giving talks, especially at offline events. Topics
+            I love speaking about: building open hardware in India, local
+            manufacturing for makers, turning prototypes into products,
+            open-source communities, backend engineering and developer tooling,
+            and mechanical keyboards.
+          </p>
+          <Button
+            href="mailto:balub997@gmail.com?subject=Speaking%20invitation"
+            variant="secondary"
+            className="mt-6"
+          >
+            Invite me to speak
+          </Button>
         </div>
       </SimpleLayout>
     </>

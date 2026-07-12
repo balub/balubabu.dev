@@ -1,7 +1,7 @@
-import Head from 'next/head'
 import Image from 'next/image'
 
 import { Card } from '@/components/Card'
+import { SEO } from '@/components/SEO'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { featuredProjects } from '@/data/projects'
 import { getGitHubProjects } from '@/lib/githubProjects'
@@ -124,13 +124,10 @@ export async function getStaticProps() {
 export default function Projects({ githubProjects }) {
   return (
     <>
-      <Head>
-        <title>Projects - Balu Babu</title>
-        <meta
-          name="description"
-          content="Things I’ve made trying to put my dent in the universe."
-        />
-      </Head>
+      <SEO
+        title="Projects - Balu Babu"
+        description="Things I’ve made trying to put my dent in the universe — hardware, software, and manufacturing experiments."
+      />
       <SimpleLayout
         title="Things I’ve made trying to put my dent in the universe."
         intro="I’ve worked on tons of little projects over the years. These are the ones I keep closest at hand, followed by a living archive of public repositories from GitHub."

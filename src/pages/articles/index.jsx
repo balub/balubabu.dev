@@ -1,6 +1,5 @@
-import Head from 'next/head'
-
 import { Card } from '@/components/Card'
+import { SEO } from '@/components/SEO'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { formatDate } from '@/lib/formatDate'
 import { getAllArticles } from '@/lib/getAllArticles'
@@ -37,13 +36,10 @@ function Article({ article }) {
 export default function ArticlesIndex({ articles }) {
   return (
     <>
-      <Head>
-        <title>Articles - Balu Babu</title>
-        <meta
-          name="description"
-          content="All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order."
-        />
-      </Head>
+      <SEO
+        title="Articles - Balu Babu"
+        description="Writing about my projects, engineering, and everything else worth documenting, collected in chronological order."
+      />
       <SimpleLayout
         title="Writing about my projects, thoughts on all things engineering and non-engineering"
         intro="Documenting/writing about my thoughts on my projects, engineering, cool shit and more, collected in chronological order."
