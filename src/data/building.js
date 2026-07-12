@@ -33,9 +33,5 @@ export const building = [
   },
 ]
 
-export const statusStyles = {
-  Building: 'bg-amber-100 text-amber-800 dark:bg-amber-500/10 dark:text-amber-400',
-  Beta: 'bg-sky-100 text-sky-800 dark:bg-sky-500/10 dark:text-sky-400',
-  Shipped: 'bg-teal-100 text-teal-800 dark:bg-teal-500/10 dark:text-teal-400',
-  Paused: 'bg-zinc-100 text-zinc-600 dark:bg-zinc-500/10 dark:text-zinc-400',
-}
+export const statusStyle =
+  'bg-teal-50 text-teal-700 ring-1 ring-inset ring-teal-600/10 dark:bg-teal-400/10 dark:text-teal-400 dark:ring-teal-400/20'

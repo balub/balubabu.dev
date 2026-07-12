@@ -10,7 +10,7 @@ import { generateRssFeed } from '@/lib/generateRssFeed'
 import { generateSitemap } from '@/lib/generateSitemap'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { resume } from '@/utils/resume'
-import { building, statusStyles } from '@/data/building'
+import { building, statusStyle } from '@/data/building'
 import { BriefcaseIcon } from '@/components/BriefcaseIcon'
 import { Spotify } from '@/components/Spotify'
 
@@ -66,9 +66,7 @@ function SocialLink({ icon: Icon, ...props }) {
 function StatusBadge({ status }) {
   return (
     <span
-      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-        statusStyles[status] ?? statusStyles.Paused
-      }`}
+      className={`shrink-0 whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium ${statusStyle}`}
     >
       {status}
     </span>
@@ -98,26 +96,26 @@ function HammerIcon(props) {
   )
 }
 
-function ProjectName({ project, className }) {
-  if (!project.href) {
-    return <span className={className}>{project.name}</span>
-  }
-  const linkClassName = `${className} transition hover:text-teal-500 dark:hover:text-teal-400`
+function ProjectLink({ project, children }) {
+  const className =
+    'group block rounded-xl px-3 py-2 transition hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 dark:hover:bg-zinc-800/50 dark:focus-visible:ring-teal-400/60'
+
   if (project.href.startsWith('/')) {
     return (
-      <Link href={project.href} className={linkClassName}>
-        {project.name}
+      <Link href={project.href} className={className}>
+        {children}
       </Link>
     )
   }
+
   return (
     <a
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={linkClassName}
+      className={className}
     >
-      {project.name}
+      {children}
     </a>
   )
 }
@@ -147,19 +145,20 @@ function NowBuilding() {
           </svg>
         </Link>
       </h2>
-      <ol className="mt-6 space-y-6">
+      <ol className="-mx-3 mt-4 space-y-1">
         {building.map((project) => (
           <li key={project.name}>
-            <div className="flex items-center justify-between gap-4">
-              <ProjectName
-                project={project}
-                className="text-sm font-medium text-zinc-900 dark:text-zinc-100"
-              />
-              <StatusBadge status={project.status} />
-            </div>
-            <p className="mt-1 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
-              {project.description}
-            </p>
+            <ProjectLink project={project}>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-sm font-medium text-zinc-900 transition group-hover:text-teal-500 dark:text-zinc-100 dark:group-hover:text-teal-400">
+                  {project.name}
+                </span>
+                <StatusBadge status={project.status} />
+              </div>
+              <p className="mt-1 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
+                {project.description}
+              </p>
+            </ProjectLink>
           </li>
         ))}
       </ol>
