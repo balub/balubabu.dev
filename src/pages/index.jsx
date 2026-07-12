@@ -1,45 +1,18 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  TwitterIcon,
-} from '@/components/SocialIcons'
+import { SEO } from '@/components/SEO'
+import { GitHubIcon, LinkedInIcon, TwitterIcon } from '@/components/SocialIcons'
 import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
+import { generateSitemap } from '@/lib/generateSitemap'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { resume } from '@/utils/resume'
+import { building, statusStyles } from '@/data/building'
 import { BriefcaseIcon } from '@/components/BriefcaseIcon'
 import { Spotify } from '@/components/Spotify'
-
-function MailIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
 
 function ArrowDownIcon(props) {
   return (
@@ -51,6 +24,19 @@ function ArrowDownIcon(props) {
         strokeLinejoin="round"
       />
     </svg>
+  )
+}
+
+function HeroLink({ href, children }) {
+  return (
+    <a
+      className="font-medium text-teal-500 hover:underline"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
   )
 }
 
@@ -74,6 +60,78 @@ function SocialLink({ icon: Icon, ...props }) {
     <Link className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
+  )
+}
+
+function StatusBadge({ status }) {
+  return (
+    <span
+      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
+        statusStyles[status] ?? statusStyles.Paused
+      }`}
+    >
+      {status}
+    </span>
+  )
+}
+
+function HammerIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M11.5 7.5 4.75 14.25a1.77 1.77 0 0 0 0 2.5l2.5 2.5a1.77 1.77 0 0 0 2.5 0l6.75-6.75"
+        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
+      />
+      <path
+        d="M10 6 14.5 2.75c2.5-.5 6.75 1.5 6.75 4.75-.75-.75-2.25-.9-3 0L17.5 9.25a1.68 1.68 0 0 1-2.4 0L10 6Z"
+        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
+      />
+    </svg>
+  )
+}
+
+function NowBuilding() {
+  return (
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <HammerIcon className="h-6 w-6 flex-none" />
+        <span className="ml-3">What I’m building now</span>
+      </h2>
+      <ol className="mt-6 space-y-6">
+        {building.map((project) => (
+          <li key={project.name}>
+            <div className="flex items-center justify-between gap-4">
+              {project.href ? (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-zinc-900 transition hover:text-teal-500 dark:text-zinc-100 dark:hover:text-teal-400"
+                >
+                  {project.name}
+                </a>
+              ) : (
+                <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  {project.name}
+                </span>
+              )}
+              <StatusBadge status={project.status} />
+            </div>
+            <p className="mt-1 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
+              {project.description}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
   )
 }
 
@@ -119,16 +177,11 @@ function Resume() {
         ))}
       </ol>
       <Button
-        href="#"
+        href="https://drive.google.com/file/d/1Lp0e_0z1XqfQz_WKv9ijAiNz7f78f2sQ/view?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
         variant="secondary"
         className="group mt-6 w-full"
-        onClick={() =>
-          window.open(
-            'https://drive.google.com/file/d/1Lp0e_0z1XqfQz_WKv9ijAiNz7f78f2sQ/view?usp=drive_link',
-            '_black',
-            'noreferrer'
-          )
-        }
       >
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
@@ -137,29 +190,24 @@ function Resume() {
   )
 }
 
-function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-
+function GetInTouch() {
   return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-              rotations[imageIndex % rotations.length]
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+      <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        Say hi
+      </h2>
+      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        I enjoy talking to people building unusual software, hardware, and
+        manufacturing systems. Reach out if you want to collaborate, invite me
+        to speak, or exchange overly ambitious project ideas.
+      </p>
+      <Button
+        href="mailto:balub997@gmail.com"
+        variant="secondary"
+        className="group mt-6 w-full"
+      >
+        Email me
+      </Button>
     </div>
   )
 }
@@ -167,70 +215,77 @@ function Photos() {
 export default function Home({ articles }) {
   return (
     <>
-      <Head>
-        <title>Balu Babu - Maker, Engineer, Anime Nerd and Aquarist.</title>
-        <meta
-          name="description"
-          content="Hey there, I'm Balu. I love to build things and I'm working hard to start my own company. I also enjoy anime and engineering, and I'm always happy to discuss them and more."
-        />
-      </Head>
+      <SEO
+        title="Balu Babu - Maker, Engineer, Anime Nerd and Aquarist."
+        description="Hey there, I'm Balu. I build software, hardware, and the systems needed to manufacture both — currently working on Vader, autofab, and open hardware from Bangalore, India."
+      />
       <Container className="mt-9">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Maker, Engineer, Anime Nerd and Aquarist.
-          </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hey there, I&apos;m Balu! I love building things. These days,
-            I&apos;m focused on building my own company and bringing new open
-            hardware products to life. I&apos;m passionate about engineering and
-            anime, and I&apos;m always happy to chat about both (and more).
-            Previously, I built intelligent CAD software for mechanical
-            engineers at{' '}
-            <a
-              className="text-sm font-bold text-orange-500 hover:underline"
-              href="https://www.hanomi.ai/"
-            >
-              Hanomi
-            </a>
-            , where we reimagined design automation with AI. I also helped build
-            the open-source API development ecosystem at{' '}
-            <a
-              className="text-sm font-bold text-teal-500 hover:underline"
-              href="https://hoppscotch.io/"
-            >
-              Hoppscotch
-            </a>
-            .{' '}
-          </p>{' '}
-          <div className="mt-6 flex gap-6">
-            {' '}
-            <SocialLink
-              href="https://twitter.com/AskBaluBabu"
-              aria-label="Follow on Twitter"
-              icon={TwitterIcon}
-            />
-            <SocialLink
-              href="https://github.com/balub"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
-            <SocialLink
-              href="https://www.linkedin.com/in/balubabu"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
-            />
+        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-12 lg:max-w-none lg:grid-cols-2">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+              Maker, Engineer, Anime Nerd and Aquarist.
+            </h1>
+            <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+              Hey there, I&apos;m Balu! I build software, hardware, and the
+              systems needed to manufacture both. Right now I&apos;m working
+              full-time on{' '}
+              <HeroLink href="https://usevader.dev">Vader</HeroLink>, redefining
+              how on-call should feel — alongside{' '}
+              <HeroLink href="https://autofab.app">autofab</HeroLink>, a
+              3D-printing-on-demand service, and open hardware like{' '}
+              <HeroLink href="https://github.com/balub/CoryDora">
+                CoryDora
+              </HeroLink>
+              . Previously, I built AI-powered CAD software at{' '}
+              <HeroLink href="https://www.hanomi.ai/">Hanomi</HeroLink> and
+              helped build the open-source API development ecosystem at{' '}
+              <HeroLink href="https://hoppscotch.io/">Hoppscotch</HeroLink>. I
+              care a lot about India&apos;s maker ecosystem, and I&apos;m always
+              happy to chat about engineering, anime, and everything in between.
+            </p>
+            <div className="mt-6 flex gap-6">
+              <SocialLink
+                href="https://twitter.com/AskBaluBabu"
+                aria-label="Follow on Twitter"
+                icon={TwitterIcon}
+              />
+              <SocialLink
+                href="https://github.com/balub"
+                aria-label="Follow on GitHub"
+                icon={GitHubIcon}
+              />
+              <SocialLink
+                href="https://www.linkedin.com/in/balubabu"
+                aria-label="Follow on LinkedIn"
+                icon={LinkedInIcon}
+              />
+            </div>
+          </div>
+          <div className="lg:pl-16 xl:pl-24">
+            <NowBuilding />
           </div>
         </div>
       </Container>
-      <Container className="mt-16">
+      <Container className="mt-20">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
-            {articles.map((article) => (
-              <Article key={article.slug} article={article} />
-            ))}
+            <section aria-labelledby="writing-title">
+              <h2
+                id="writing-title"
+                className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100"
+              >
+                Recent writing
+              </h2>
+              <div className="mt-10 flex flex-col gap-16">
+                {articles.map((article) => (
+                  <Article key={article.slug} article={article} />
+                ))}
+              </div>
+            </section>
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Resume />
+            <GetInTouch />
             <Spotify />
           </div>
         </div>
@@ -242,6 +297,7 @@ export default function Home({ articles }) {
 export async function getStaticProps() {
   if (process.env.NODE_ENV === 'production') {
     await generateRssFeed()
+    await generateSitemap()
   }
 
   return {
