@@ -254,28 +254,24 @@ export default function Home({ articles }) {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Maker, Engineer, Anime Nerd and Aquarist.
+            I build hardware, software, and the systems required to manufacture
+            both.
           </h1>
           <p className="mt-6 text-lg font-medium text-zinc-800 dark:text-zinc-200">
             On a mission to make manufacturing{' '}
             <span className="text-teal-500">as accessible as software</span>.
           </p>
           <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
-            Hey there, I&apos;m Balu! I build software, hardware, and the
-            systems needed to manufacture both. Right now I&apos;m working
-            full-time on <HeroLink href="https://usevader.dev">Vader</HeroLink>,
-            redefining how on-call should feel — alongside{' '}
-            <HeroLink href="https://autofab.app">autofab</HeroLink>, a
-            3D-printing-on-demand service, and open hardware like{' '}
-            <HeroLink href="https://github.com/balub/CoryDora">
-              CoryDora
-            </HeroLink>
-            . Previously, I built AI-powered CAD software at{' '}
-            <HeroLink href="https://www.hanomi.ai/">Hanomi</HeroLink> and helped
-            build the open-source API development ecosystem at{' '}
-            <HeroLink href="https://hoppscotch.io/">Hoppscotch</HeroLink>. I
-            care a lot about India&apos;s maker ecosystem, and I&apos;m always
-            happy to chat about engineering, anime, and everything in between.
+            Hey there, I&apos;m Balu! I love building things. These days,
+            I&apos;m focused on building my own company and bringing new open
+            hardware products to life. I&apos;m passionate about engineering and
+            anime, and I&apos;m always happy to chat about both (and more).
+            Previously, I built intelligent CAD software for mechanical
+            engineers at{' '}
+            <HeroLink href="https://www.hanomi.ai/">Hanomi</HeroLink>, where we
+            reimagined design automation with AI. I also helped build the
+            open-source API development ecosystem at{' '}
+            <HeroLink href="https://hoppscotch.io/">Hoppscotch</HeroLink>.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
