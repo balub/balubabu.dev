@@ -99,27 +99,53 @@ function HammerIcon(props) {
 }
 
 function ProjectName({ project, className }) {
-  if (project.href) {
+  if (!project.href) {
+    return <span className={className}>{project.name}</span>
+  }
+  const linkClassName = `${className} transition hover:text-teal-500 dark:hover:text-teal-400`
+  if (project.href.startsWith('/')) {
     return (
-      <a
-        href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${className} transition hover:text-teal-500 dark:hover:text-teal-400`}
-      >
+      <Link href={project.href} className={linkClassName}>
         {project.name}
-      </a>
+      </Link>
     )
   }
-  return <span className={className}>{project.name}</span>
+  return (
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={linkClassName}
+    >
+      {project.name}
+    </a>
+  )
 }
 
 function NowBuilding() {
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <HammerIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">What I’m building now</span>
+      <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <Link
+          href="/projects"
+          className="group flex items-center transition hover:text-teal-500 dark:hover:text-teal-400"
+        >
+          <HammerIcon className="h-6 w-6 flex-none" />
+          <span className="ml-3">What I’m building now</span>
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+            className="ml-auto h-4 w-4 stroke-zinc-400 transition group-hover:translate-x-0.5 group-hover:stroke-teal-500 dark:group-hover:stroke-teal-400"
+          >
+            <path
+              d="M6.75 5.75 9.25 8l-2.5 2.25"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
       </h2>
       <ol className="mt-6 space-y-6">
         {building.map((project) => (
