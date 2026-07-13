@@ -1,61 +1,118 @@
-export const labStatusStyles = {
-  'In progress':
-    'bg-amber-100 text-amber-800 dark:bg-amber-500/10 dark:text-amber-400',
-  Experimenting:
-    'bg-sky-100 text-sky-800 dark:bg-sky-500/10 dark:text-sky-400',
-  Tinkering:
-    'bg-teal-100 text-teal-800 dark:bg-teal-500/10 dark:text-teal-400',
-  'On the shelf':
-    'bg-zinc-100 text-zinc-600 dark:bg-zinc-500/10 dark:text-zinc-400',
+export function sortNewestFirst(items) {
+  return [...items].sort(
+    (left, right) =>
+      new Date(right.date).getTime() - new Date(left.date).getTime()
+  )
 }
 
-export const labExperiments = [
+export function sortOldestFirst(items) {
+  return [...items].sort(
+    (left, right) =>
+      new Date(left.date).getTime() - new Date(right.date).getTime()
+  )
+}
+
+export const labEntries = [
   {
-    name: 'BrainDump',
-    status: 'In progress',
-    description:
-      'A fresh take on note-taking that keeps ideas fast, searchable, and shareable. Building it with Krishna Shamji — he’s crushing the content side while I finish the engineering.',
-    link: null,
+    date: '2026-06-25',
+    title: 'The room starts fighting back',
+    caption:
+      'Every new tool promised to save space and somehow needed a table, three cables, and a box of its own. There was still a patch of floor, so I counted that as progress.',
+    tags: ['Workshop', 'Manufacturing'],
+    media: [
+      {
+        type: 'image',
+        src: '/images/lab/room-2026-06.jpg',
+        alt: 'A wide view of the workshop in June 2026 with tools, storage, boxes, and cables filling the room',
+      },
+    ],
   },
   {
-    name: 'FabInventory',
-    status: 'Experimenting',
-    description:
-      'A local-first, Git-powered inventory and BOM tracker for makers that automatically syncs every change to your GitHub repository.',
-    link: 'https://github.com/balub/fabinventory',
+    date: '2026-04-27',
+    title: 'Assembly takes over the bench',
+    caption:
+      'The build had reached the stage where sitting down meant moving three other things first. I kept one clear square in the middle and called it a system.',
+    tags: ['Assembly', 'Workshop'],
+    media: [
+      {
+        type: 'video',
+        src: '/images/lab/assembly-2026-04.mp4',
+        poster: '/images/lab/assembly-2026-04-poster.jpg',
+        alt: 'Assembling parts inside a laser-cut wooden enclosure at the electronics bench',
+      },
+    ],
   },
   {
-    name: 'Open Aquarium Project',
-    status: 'Tinkering',
-    description:
-      'A collection of FOSS tools, configs, hardware, and software I’ve built to help me manage my aquarium. The aquarist side of the site, finally meeting the engineer side.',
-    link: 'https://github.com/balub/open-aquarium-project',
+    date: '2025-10-12',
+    title: 'Electronics bench',
+    caption:
+      'For one afternoon the centre of the bench was completely empty. I took a photo because I knew nobody would believe me later.',
+    tags: ['Electronics', 'Workbench'],
+    media: [
+      {
+        type: 'image',
+        src: '/images/lab/electronics-bench-2025-10.jpg',
+        alt: 'A cleared electronics bench beneath component drawers and a wall of hand tools',
+      },
+    ],
   },
   {
-    name: 'Lampy',
-    status: 'Tinkering',
-    description:
-      'Custom firmware for my desk lamp, now with a live LED simulator so I can preview animations without flashing the hardware.',
-    link: 'https://github.com/balub/lampy',
+    date: '2025-09-22',
+    title: 'A room with potential',
+    caption:
+      'At this point the workshop was one bench, one shelf, and a permanent argument with cardboard boxes. Almost everything I made still began here.',
+    tags: ['The beginning', 'Workshop'],
+    media: [
+      {
+        type: 'image',
+        src: '/images/lab/room-2025-09.jpg',
+        alt: 'The early workshop crowded with a workbench, storage drawers, tools, boxes, and a single chair',
+      },
+    ],
   },
   {
-    name: 'Michi',
-    status: 'On the shelf',
-    description: 'A simple roadmap maker.',
-    link: 'https://github.com/balub/michi',
-  },
-  {
-    name: 'Placeholdr',
-    status: 'On the shelf',
-    description:
-      'A simple, open-source, self-hostable tool for collecting product feedback and analysis.',
-    link: 'https://github.com/balub/Placeholdr',
-  },
-  {
-    name: 'OpenWSI',
-    status: 'On the shelf',
-    description:
-      'An open-source medical whole-slide imaging hardware device. I gave a couple of talks about it at FOSS United Bangalore back in 2022.',
-    link: 'https://twitter.com/aakansha1216/status/1578708567741280257',
+    date: '2025-02-01',
+    title: 'A print taller than the printer',
+    caption:
+      'The sensible approach was to split it into smaller parts. Naturally, I wanted to see how tall I could make it first.',
+    tags: ['3D printing', 'Experiments'],
+    media: [
+      {
+        type: 'video',
+        src: '/images/lab/tall-print-2025-02.mp4',
+        poster: '/images/lab/tall-print-2025-02-poster.jpg',
+        alt: 'A tall 3D-printed Saturn V rocket standing on the workshop bench',
+        layout: 'portrait',
+      },
+    ],
   },
 ]
+
+export const workbenchArchive = [
+  {
+    date: '2026-06-01',
+    media: {
+      type: 'image',
+      src: '/images/lab/production-room-2026-06.jpg',
+      alt: 'The June 2026 workspace with printers, storage, cables, books, and open boxes',
+    },
+  },
+  {
+    date: '2025-10-01',
+    media: {
+      type: 'image',
+      src: '/images/lab/electronics-bench-2025-10.jpg',
+      alt: 'The electronics bench in October 2025, briefly cleared in the middle',
+    },
+  },
+  {
+    date: '2025-09-01',
+    media: {
+      type: 'image',
+      src: '/images/lab/room-2025-09.jpg',
+      alt: 'The workshop in September 2025 with boxes and projects covering most surfaces',
+    },
+  },
+]
+
+export const labMilestones = []

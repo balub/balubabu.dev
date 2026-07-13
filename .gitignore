@@ -31,5 +31,8 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Original Lab media stays local; only optimized derivatives are public.
+media/lab/inbox/
+
 # generated files
 /public/rss/

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:lab": "node --experimental-default-type=module --test src/data/lab.test.js"
   },
   "browserslist": "defaults, not ie <= 11",
   "engines": {
