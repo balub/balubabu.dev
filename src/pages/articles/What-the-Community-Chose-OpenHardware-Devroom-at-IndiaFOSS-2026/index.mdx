@@ -1,0 +1,208 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import allVotesChart from './talk_votes_all_chart.png'
+import allVotesChartDark from './talk_votes_all_chart_dark.png'
+import topVotesChart from './talk_votes_top_chart.png'
+import topVotesChartDark from './talk_votes_top_chart_dark.png'
+import analysisImage from './terminal_output.png'
+
+export const meta = {
+  author: 'Balu Babu',
+  date: '2026-08-20',
+  title: 'What the Community Chose: Open Hardware Devroom at IndiaFOSS 2026',
+  description:
+    'The community voting results, analysis, and final talk selection for the Open Hardware Devroom at IndiaFOSS 2026 — along with what changed since last year.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+Last year, we tried something new at IndiaFOSS: we ran an Open Hardware Devroom and let the community vote on what they wanted to see.
+
+This year, it got slightly out of hand. In a good way.
+
+[IndiaFOSS 2026](https://fossunited.org/indiafoss/2026) is the sixth edition of India's community-driven festival for FOSS and digital commons. It is happening on September 26 and 27 at the NIMHANS Convention Centre in Bengaluru. Devrooms are back too: half-day, three-hour mini-conferences run by individual communities inside the larger event.
+
+After what we saw last year, bringing the [Open Hardware Devroom](https://fossunited.org/indiafoss/2026/devrooms) back felt obvious. This year's theme is **Building, Hacking, Shipping: Open Hardware for the Next Generation**.
+
+The goal is still simple. We want people to leave the room thinking:
+
+> I can build something too.
+
+## The CFP Got Much Bigger
+
+In 2025, we had 12 talks on the ballot. This year, we had **35**.
+
+The proposals covered everything from swarm robotics, keyboards, fasteners, music hardware and CNC machines to semiconductor fabrication, community networks, scientific instruments, FPGAs, environmental monitoring and cat toys.
+
+Thirty-five talks for a three-hour Devroom is, technically speaking, a scheduling problem.
+
+We could only fit around six sessions. Rather than quietly making the entire decision ourselves, we did the same thing we did last year:
+
+> We let the community vote.
+
+## A New Voting System
+
+Last year's voting site used email verification after a ballot was submitted. That gave us two result sets: all votes and verified votes. Of the 41 people who voted, only 30 completed verification. Filtering out the other 11 changed two talks in the top-five list.
+
+It worked, but interpreting two different leaderboards after voting closed was messy.
+
+This year, we built a proper [conference voting system](https://github.com/Absurd-Industries/voting-system). Authentication happens before voting, so there is no separate verified and unverified result. If a ballot is in the final count, it came from a signed-in voter.
+
+We also changed a few things to reduce bias:
+
+- Each voter could support up to **nine talks**. Using all nine was optional.
+- Live results were hidden while voting was open.
+- Organizers and administrators could not vote.
+- Talk order was shuffled on every visit, so the same proposal did not stay at the top of the page.
+- Talks a voter had already selected stayed pinned when they returned.
+- Voters could change their selections until voting closed.
+
+Voting ran from July 31 to August 10.
+
+## Participation
+
+At the voting cutoff, **53 voter accounts** had been created. Of those, **48 people cast at least one vote**, producing **262 selections** across the 35 proposals.
+
+That works out to an average of **5.46 selections per participating voter**.
+
+The cutoff matters here. People continued creating accounts after voting had already closed, so using the current account count would make participation appear to change every time we checked it. For this analysis, I froze the number at the actual close of voting.
+
+## Results
+
+### All 35 Proposals
+
+This graph shows the complete result. Talks with the same number of votes share the same rank.
+
+<Image
+  src={allVotesChart}
+  className="dark:hidden"
+  alt="Bar chart showing votes received by all 35 Open Hardware Devroom proposals"
+/>
+
+<Image
+  src={allVotesChartDark}
+  className="hidden dark:block"
+  alt="Dark-mode bar chart showing votes received by all 35 Open Hardware Devroom proposals"
+/>
+
+### The Leading Group
+
+The top ten make the shape of the result easier to see.
+
+<Image
+  src={topVotesChart}
+  className="dark:hidden"
+  alt="Bar chart showing the ten highest-voted Open Hardware Devroom proposals"
+/>
+
+<Image
+  src={topVotesChartDark}
+  className="hidden dark:block"
+  alt="Dark-mode bar chart showing the ten highest-voted Open Hardware Devroom proposals"
+/>
+
+The leading proposals were:
+
+- **Rank 1:** Minnow: An Open Platform for Ground Swarm Robotics — 17 votes
+- **Rank 2:** Build Your Own Open Source Keyboard with ZMK/QMK — 16 votes
+- **Rank 2:** Holding It Together: A Talk About Screws — 16 votes
+- **Rank 4:** Building Open Source Music Hardware in India – Tarab Instruments — 14 votes
+- **Rank 4:** CNC4Everyone — 14 votes
+- **Rank 6:** My Zero-to-Hero Journey Deploying a Fiber-Optic and Wireless Community Mesh — 13 votes
+
+The next four talks were tied at 10 votes each: home automation, an e-paper dashboard, HackerFab IITB and an introduction to Physical AI.
+
+## What Changed Since Last Year?
+
+This is the part I found most interesting. The two elections look similar on the surface, but the way people voted changed quite a bit.
+
+### The Ballot Nearly Tripled
+
+We went from **12 proposals to 35**. That is nearly three times as many projects for voters to explore.
+
+Participation also grew. Last year 41 people submitted ballots, of which 30 were verified. This year 48 authenticated voters participated.
+
+The Open Hardware community did not suddenly become three times larger in a year, but the range of work people were willing to submit certainly did.
+
+### More Choices, But More Selective Voting
+
+Last year, voters used 182 of the 205 selections available across all submitted ballots: roughly **89% of the vote budget**. Among verified voters alone, the usage was slightly higher at 91%.
+
+This year, voters used 262 of the 432 selections available to them: roughly **61%**.
+
+So even though we increased the limit from five talks to nine, people did not simply fill every available slot. On average they selected 5.46 talks.
+
+That is useful. An unused vote tells us something too. It means people were choosing the talks they genuinely wanted rather than treating nine as a target they had to reach.
+
+### Support Spread Across More Projects
+
+Last year's leading verified talk received 18 votes from 30 verified voters: **60% of participants**.
+
+This year's leader received 17 votes from 48 voters: **35%**.
+
+The top six talks accounted for about 62% of all verified selections in 2025. This year, the top six accounted for only 34% of the selections.
+
+That does not mean the leading talks were weaker. It means interest was spread much more widely across a ballot containing far more projects.
+
+### A Cleaner Cutoff, Followed by Actual Curation
+
+Last year, four talks were tied at 12 verified votes around the final selection boundary. We still had to use organizer judgement even though the final post mostly described the outcome as vote-driven.
+
+This year's raw ranking gave us a cleaner numerical break: the sixth proposal had 13 votes and the next group had 10.
+
+But a vote is a signal, not an automatic scheduling algorithm.
+
+The raw top six included two talks from me. Giving two of six available slots to one speaker did not feel like the best use of a community Devroom, so we kept Minnow and opened the other slot. That brought us to the four-way tie at 10 votes. We selected HackerFab IITB from that group to round out the programme and bring open semiconductor fabrication into the room.
+
+This is why publishing the numbers matters. The community can see where the vote ended and where organizer judgement began.
+
+### The Kind of Work Changed Too
+
+The 2025 leaders leaned heavily toward individual builds and product demonstrations: a homelab, hardware gaming, a macropad, a soldering jig, a badge and a road-safety device.
+
+This year's leading group includes swarm robotics, open keyboards, fastener documentation, musical instruments, classroom CNC machines, community networking and semiconductor fabrication.
+
+My interpretation is that the community still loves a clever object, but there is growing interest in projects that help other people build: platforms, tools, repair practices, educational machines and shared infrastructure.
+
+## How the Analysis Was Done
+
+Last year, I pasted the entire analysis script into the article. This year's version grew into a small command-line tool with input validation, shared ranking for ties, CSV export, theme-aware graphs and tests. Dropping more than 250 lines of Python in the middle of this post felt slightly excessive, even for me.
+
+So the complete script, tests, aggregate dataset and generated graphs are published in the voting repository:
+
+[**IndiaFOSS 2026 voting analysis and source code**](https://github.com/Absurd-Industries/voting-system/tree/main/analysis/indiafoss-2026)
+
+You can reproduce the analysis with:
+
+```bash
+python3 -m pip install -r analysis/indiafoss-2026/requirements.txt
+
+python3 analysis/indiafoss-2026/analyze_results.py \
+  analysis/indiafoss-2026/results-2026.json \
+  --output-dir analysis/indiafoss-2026/generated
+```
+
+<Image src={analysisImage} alt="Terminal output from the IndiaFOSS 2026 voting analysis script" />
+
+## Data and Privacy
+
+The raw database contains email addresses and individual ballots, so we are not publishing it.
+
+The repository contains a privacy-safe aggregate file with talk titles, presenter names, vote totals and participation statistics. That is enough to reproduce every ranking and graph in this article without exposing who voted for what.
+
+## The Final Lineup
+
+After looking at the community vote, avoiding duplicate speaker slots and resolving the tie at 10 votes, here is the final Open Hardware Devroom lineup for IndiaFOSS 2026:
+
+- [**Minnow: An Open Platform for Ground Swarm Robotics**](https://fossunited.org/c/indiafoss/2026/cfp/7pt1ibasdd) — Balu Babu
+- [**Build Your Own Open Source Keyboard with ZMK/QMK**](https://fossunited.org/c/indiafoss/2026/cfp/32f9jjkob0) — Advait Dhamorikar
+- [**Building Open Source Music Hardware in India – Tarab Instruments**](https://fossunited.org/c/indiafoss/2026/cfp/3nr9benq94) — Syed Ali
+- [**CNC4Everyone**](https://fossunited.org/c/indiafoss/2026/cfp/1cbj5bhfhf) — Nikhil Nair, Ashish Joy and Akash Edamana
+- [**My Zero-to-Hero Journey Deploying a Fiber-Optic and Wireless Community Mesh**](https://fossunited.org/c/indiafoss/2026/cfp/9e9bajmm07) — Kiran Jonnalagadda
+- [**HackerFab IITB: Democratizing Semiconductor Fabrication**](https://fossunited.org/c/indiafoss/2026/cfp/8q47utd51e) — Jai Bellare
+
+Thank you to everyone who submitted a proposal, read through a very long ballot and voted.
+
+I am excited to see this room come together. I am also now slightly nervous that my swarm robots need to behave on stage.
+
+See you at IndiaFOSS.
