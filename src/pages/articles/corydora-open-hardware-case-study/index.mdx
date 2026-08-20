@@ -1,4 +1,8 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import hero from './corydora-hero.webp'
+import pcbFront from './corydora-pcb-front.png'
+import pcbBack from './corydora-pcb-back.png'
 
 export const meta = {
   author: 'Balu Babu',
@@ -10,58 +14,381 @@ export const meta = {
 
 export default (props) => <ArticleLayout meta={meta} {...props} />
 
-{/* TODO(balu): add a hero photo of CoryDora here before publishing */}
+<Image
+  src={hero}
+  alt="A blue CoryDora macropad with nine orange keys, an OLED screen, and a rotary encoder"
+  priority
+/>
 
-CoryDora is an open-source, QMK-compatible 3×3 macropad. I designed it,
-3D printed it, and sold it independently — no factory, no distributor, no
-crowdfunding campaign. Just me, a printer, and a bill of materials.
+<aside
+  aria-label="Draft status"
+  className="not-prose my-8 text-base leading-7 text-zinc-500 dark:text-zinc-400"
+>
+  <span className="mr-3 inline-flex rounded-full border border-teal-600/30 px-4 py-1 align-middle text-sm font-semibold uppercase tracking-wider text-teal-600 dark:border-teal-400/30 dark:text-teal-400">
+    {'Draft 2 of 3'}
+  </span>
+  {
+    'This is the second draft of this post. Read about why I write in three drafts in '
+  }
+  <a
+    className="font-semibold text-teal-600 underline decoration-teal-500/30 underline-offset-2 transition hover:decoration-teal-500 dark:text-teal-400"
+    href="/articles/I-wrote-one-blog-then-disappeared"
+  >
+    {'I Wrote One Blog. Then Disappeared.'}
+  </a>
+</aside>
 
-And yes, it's named after the corydoras catfish. The aquarist in me was
-never going to let a naming opportunity like that go.
+I go to a lot of meetups and conferences, and for a long time I had this habit
+of carrying small 3D printed things with me.
 
-## Why a macropad?
+Nothing particularly serious. Just random little gimmicks, tiny prints,
+keychains, and whatever else I happened to have made recently. I’d take a few
+with me and hand them out to people I met, especially students.
 
-A macropad is close to the perfect first hardware product. It's small enough
-that one person can own the entire stack — PCB, firmware, enclosure,
-packaging — but real enough that every hard lesson about making physical
-products shows up in miniature: sourcing, tolerances, assembly time,
-shipping, support.
+I liked doing that, but after a point I wanted to make something a little more
+concrete.
 
-{/* TODO(balu): a paragraph on the actual design decisions — switches,
-    layout, why 3x3 — and a photo of the internals */}
+Something that was still small and approachable, but also something a person
+could sit down and build. Something that could be their first real hardware
+project.
 
-## The part nobody warns you about: the supply chain
+That is more or less where CoryDora came from.
 
-The electronics were the easy part. The hard part was everything around
-them — getting components reliably, at sane prices, on timelines you can
-actually promise a customer. When your product depends on parts crossing an
-ocean, your product is only as reliable as the most fragile link in that
-chain.
+CoryDora is an open-source 3×3 macropad. It has nine hot-swappable MX switches,
+an OLED display, a rotary encoder, and it runs QMK.
 
-That experience turned into a talk at IndiaFOSS 2025:
-[CoryDora: A Macropad, A Supply Chain, and A Case for Local Manufacturing](https://www.youtube.com/watch?v=UiJbgOzwvzU).
-The short version of the argument: if we want more makers in India shipping
-real hardware, we need a local manufacturing ecosystem they can lean on —
-not one where every prototype depends on a fragile global supply chain.
+And yes, it is named after the corydoras catfish. I keep fish. I like corydoras.
+There was never any chance I was going to waste an opportunity like that.
 
-{/* TODO(balu): numbers make this section land — units sold, cost breakdown,
-    lead times, whatever you're comfortable sharing */}
+## Someone’s first hardware project
 
-## Going smaller: Pigmy-CoryDora
+From the beginning, I wanted CoryDora to be something I could hand to someone
+who had never really built electronics before.
 
-The follow-up, [Pigmy-CoryDora](https://github.com/balub/Pigmy-CoryDora),
-is a compact 3-key version built around the Glyph Mini RP2040. Smaller
-footprint, same personality — and a chance to apply everything the first
-version taught me.
+Their first PCB.
 
-## What I'd tell you if you're thinking about it
+Their first soldering project.
 
-Everything — hardware designs, firmware, and enclosure files — is open
-source in the [CoryDora repo](https://github.com/balub/CoryDora). If you're
-in India and thinking about making your own hardware product: the
-electronics will not be your bottleneck. Plan for the boring parts, because
-the boring parts are the product.
+Their first mechanical keyboard-adjacent thing.
 
-If any of this resonates, I gave an earlier talk at ChennaiFOSS on
-[building open hardware with FOSS tools](https://www.youtube.com/watch?v=pFYOFzUogiU)
-that covers the toolchain side of the story.
+Maybe even the first time they looked at a board and actually understood what
+was happening instead of treating it like a mysterious green rectangle.
+
+That is why the board is a 3×3 macropad.
+
+Nine keys are enough to make it useful, but not so many that it becomes
+intimidating. The circuit is also small enough that you can actually follow it.
+A switch goes through a diode, reaches the microcontroller, and the firmware
+turns that into a key press. It is not hard to explain, and more importantly, it
+is not hard to understand.
+
+I wanted someone building it to feel like they were learning something, not
+just soldering parts together because I told them to.
+
+The OLED and rotary encoder are there because I still wanted it to be a fun
+macropad when it was done. The switches are hot-swappable because once you let
+mechanical keyboard people into the room, switch opinions become inevitable.
+
+[QMK](https://qmk.fm/) did a lot of heavy lifting on the firmware side. That way
+the hardware could stay simple, and whoever built it could still remap the
+board without me having to create a custom firmware stack from scratch.
+
+<Image
+  src={pcbFront}
+  alt="Front render of the CoryDora PCB showing the nine switch positions, OLED display, and rotary encoder"
+/>
+
+## The RP2040 Zero
+
+I used an RP2040 Zero module rather than putting the RP2040 directly on the PCB.
+
+Partly because it was cheap. Partly because it was supported by QMK. Mostly
+because it kept the whole thing simple.
+
+If CoryDora was meant to be somebody’s first soldering project, then using a
+small module made more sense than adding all the supporting circuitry for the
+microcontroller directly to the board.
+
+The rest of the bill of materials followed the same idea.
+
+Through-hole diodes.
+
+Standard MX-compatible switches.
+
+Hot-swap sockets.
+
+A small I2C OLED.
+
+A fairly normal rotary encoder.
+
+Nothing on the board was meant to feel exotic or hard to source.
+
+<Image
+  src={pcbBack}
+  alt="Back render of the CoryDora PCB showing the RP2040 Zero, diodes, and hot-swap sockets"
+/>
+
+But that turned out to be true only if you were building one of them.
+
+## I wasn’t actually planning to sell these
+
+Originally, CoryDora was not really a product in my head. It was something I
+wanted to make and give away.
+
+That changed because [Amit](https://x.com/layogtima) basically convinced me to
+make a small batch and try selling them at
+[IndiaFOSS](https://fossunited.org/indiafoss/2025).
+
+So I made a small batch.
+
+Then I put out a post on Twitter saying I had ten units and that people could
+come buy them at IndiaFOSS.
+
+{/* TODO(balu): add the Twitter/X announcement screenshot and post link */}
+
+I really did not expect much beyond a few people finding it interesting and
+maybe picking one up if they happened to be around.
+
+That is not what happened.
+
+People showed up specifically to buy CoryDora.
+
+A few people literally came to the conference, bought one from me, and left.
+
+That was the moment it stopped feeling like just another fun side project and
+started feeling like something with a life of its own.
+
+It was a very funny experience, but it also changed how I thought about the
+project. Up to that point, CoryDora was just something I had made. Now it was
+something people wanted, which is a different problem.
+
+{/* TODO(balu): add a photo of the CoryDora batch or selling table at IndiaFOSS */}
+
+{/* TODO(balu): add a photo of one of the first people to buy a CoryDora */}
+
+## Making one is easy. Making ten is a different problem.
+
+When you are building one piece of hardware for yourself, sourcing is flexible.
+
+If one vendor is expensive, you wait.
+
+If they are out of stock, you buy from someone else.
+
+If the exact switches you wanted are unavailable, you just choose a different
+switch.
+
+You have a lot of freedom because you only need enough parts to make one.
+
+The moment you try to make ten of the same thing, that freedom disappears.
+
+Now I needed to know where the next ten RP2040 Zeros were coming from.
+
+I needed to know whether the switches I used last time would still be
+available.
+
+I needed to know whether I could get the same keycaps again, at something
+resembling the same price.
+
+And now all of that mattered because I had already told people what a CoryDora
+cost.
+
+This was the part I had underestimated.
+
+As a project, “easy to source” was fine.
+
+As a product, “easy to source” was not enough. I needed “predictable to stock.”
+
+## Cheap parts are not always predictably cheap
+
+The RP2040 Zero is a good example.
+
+One of the reasons I picked it was because it was supposed to be cheap and easy
+to find.
+
+And, to be fair, it usually was.
+
+But “usually” is not the same thing as “reliably.”
+
+Sometimes I could find it easily. Sometimes I could not. Sometimes the price was
+good. Sometimes it moved enough to become annoying. Sometimes one seller had it
+in stock, but only at a price that stopped making sense the moment shipping got
+involved.
+
+None of this matters much when you need one module.
+
+It matters a lot more when you are trying to make a small batch and keep the
+final price reasonable.
+
+And honestly, the RP2040 wasn’t even the most irritating part.
+
+That was switches and keycaps.
+
+## Mechanical keyboard parts are a pain
+
+There are some great mechanical keyboard vendors in India, but if you want deep
+and consistent stock across switches, keycaps, and all the little combinations
+people care about, things get messy pretty fast.
+
+Customers do not all want the same switch.
+
+Fair enough.
+
+Some want linear switches. Some want tactile. Some want a specific feel. Some
+want a particular colour of keycaps. Which is all perfectly reasonable until
+you are the one trying to actually stock the combinations.
+
+I would find a switch people liked.
+
+Then I would run out.
+
+Then I would try to buy more and discover it was out of stock, or more
+expensive, or only available from somewhere that made the numbers stop working.
+
+Keycaps were the same story.
+
+The CoryDora PCB had not changed.
+
+The enclosure had not changed.
+
+The firmware had not changed.
+
+But the actual product around it kept changing based on what I could buy.
+
+That was probably my first proper introduction to how quickly a hardware
+project turns into a supply-chain problem.
+
+## The electronics were the easy part
+
+I think a lot of hardware projects are presented like the story ends once the
+prototype works.
+
+You draw the schematic, route the PCB, order it, solder it, flash the firmware,
+and turn it on.
+
+Done.
+
+And that is still one of my favourite parts of building hardware. Getting a new
+board back and seeing it come alive never really gets old.
+
+But shipping CoryDora changed the definition of done.
+
+Now I needed enough parts for the next batch.
+
+I needed to assemble and test every unit.
+
+I needed to print enclosures.
+
+I needed packaging.
+
+I needed to answer questions from people building or using them.
+
+I needed to make sure I wasn’t accidentally spending more building them than I
+was selling them for.
+
+None of these things are as fun as bringing up a new PCB for the first time.
+
+But they are the difference between a project that exists on your desk and a
+product that exists in the world.
+
+## This turned into an IndiaFOSS talk
+
+This whole experience eventually became my talk at IndiaFOSS 2025:
+
+[**CoryDora: A Macropad, A Supply Chain, and A Case for Local Manufacturing**](https://www.youtube.com/watch?v=UiJbgOzwvzU&t=252s)
+
+{/* TODO(balu): add a photo from the IndiaFOSS talk */}
+
+By then, I had spent enough time trying to source parts that the broader point
+had become hard to ignore.
+
+There are a lot of people in India building interesting hardware.
+
+It is easier than ever to prototype. KiCad is excellent. PCB manufacturing is
+accessible. 3D printers are much more common now. Open-source firmware and
+hardware designs make it possible for one person sitting at home to build
+surprisingly capable things.
+
+But the moment you try to ship even a small batch, the boring stuff starts to
+matter a lot.
+
+Switches.
+
+Connectors.
+
+Displays.
+
+Fasteners.
+
+Keycaps.
+
+Packaging.
+
+That is the part I had not appreciated enough before CoryDora.
+
+A product is not fragile only because the PCB might be wrong. It is fragile
+because the whole thing depends on a bunch of other little pieces being
+available when you need them.
+
+That experience made me think much more seriously about local manufacturing and
+local supply chains.
+
+Not only PCB manufacturing, but the rest of the ecosystem around it too.
+
+Because the boring parts are usually where the product actually breaks.
+
+## Pigmy-CoryDora
+
+The follow-up to CoryDora was
+[Pigmy-CoryDora](https://github.com/balub/Pigmy-CoryDora), a smaller three-key
+version built around the Glyph Mini RP2040.
+
+It has the same basic spirit, but making it also gave me a chance to apply some
+of the lessons from the original board.
+
+Fewer parts.
+
+Smaller footprint.
+
+Simpler assembly.
+
+Still fun, still understandable, but with a little more awareness of what
+happens when a project has to be made repeatedly.
+
+{/* TODO(balu): add a Pigmy-CoryDora photo or render */}
+
+## What CoryDora taught me
+
+I still think starting simple is good advice for anyone building their first
+hardware product.
+
+Just be careful about what you mean by simple.
+
+A simple circuit is easier to debug.
+
+A short bill of materials is easier to manage.
+
+Common parts are usually safer than exotic ones.
+
+But if you think you might ever make more than one, you also need to think about
+repeatability.
+
+Can you still get the same parts later?
+
+Can you make ten more without redesigning something?
+
+Can you keep the price stable enough that selling it does not become stressful?
+
+CoryDora started because I wanted something nicer than a random 3D print to hand
+to people at meetups.
+
+It ended up becoming a product, a talk, and probably the project that taught me
+the most about what it actually means to ship hardware.
+
+Not bad for nine keys and a fish name.
+
+Everything — the hardware design, firmware, and enclosure files — is open source
+in the [CoryDora repository](https://github.com/balub/CoryDora).
+
+And if you want the toolchain side of how I build open hardware, I also gave a
+talk at ChennaiFOSS on
+[building open hardware with FOSS tools](https://www.youtube.com/watch?v=pFYOFzUogiU).

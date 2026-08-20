@@ -25,7 +25,12 @@ function formatDate(date, formatter = monthFormatter) {
   return formatter.format(new Date(`${date}T00:00:00Z`))
 }
 
-function Media({ media, priority = false, compact = false }) {
+function Media({
+  media,
+  priority = false,
+  compact = false,
+  fillRow = false,
+}) {
   const frameClassName = compact
     ? 'aspect-[4/3]'
     : 'aspect-[3/2] sm:aspect-[16/9]'
@@ -51,7 +56,9 @@ function Media({ media, priority = false, compact = false }) {
 
   return (
     <div
-      className={`relative ${frameClassName} overflow-hidden rounded-2xl sm:rounded-3xl`}
+      className={`relative ${frameClassName} overflow-hidden rounded-2xl sm:rounded-3xl ${
+        fillRow ? 'sm:aspect-auto sm:h-full' : ''
+      }`}
     >
       <Image
         src={media.src}
@@ -70,6 +77,8 @@ function Media({ media, priority = false, compact = false }) {
 }
 
 function JournalEntry({ entry, priority }) {
+  const isSideBySide = entry.mediaLayout === 'side-by-side'
+
   return (
     <article className="border-t border-zinc-100 pt-10 dark:border-zinc-700/40 sm:pt-14">
       <header className="mb-6 max-w-2xl sm:mb-8">
@@ -84,12 +93,19 @@ function JournalEntry({ entry, priority }) {
         </h2>
       </header>
 
-      <div className="space-y-5">
+      <div
+        className={
+          isSideBySide
+            ? 'grid gap-5 sm:grid-cols-[minmax(0,2fr)_minmax(14rem,1fr)] sm:items-stretch'
+            : 'space-y-5'
+        }
+      >
         {entry.media.map((media, index) => (
           <Media
             key={media.src}
             media={media}
             priority={priority && index === 0}
+            fillRow={isSideBySide && media.type === 'image'}
           />
         ))}
       </div>
@@ -229,8 +245,8 @@ export default function Lab() {
               manufacturing experiments.
             </p>
             <p>
-              I’m documenting how this space evolves over time—from a spare room
-              in my house to wherever this journey ends.
+              I’m documenting how this space evolves over time, from a spare
+              room in my house to wherever this journey ends.
             </p>
           </div>
         </header>

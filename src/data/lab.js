@@ -15,9 +15,31 @@ export function sortOldestFirst(items) {
 export const labEntries = [
   {
     date: '2026-06-25',
+    title: 'New tool unlocked: Laser cutter',
+    caption:
+      'I have wanted a laser cutter for years. Now there is one sitting in my room and I can finally start making the things I bought it for.',
+    tags: ['Laser cutter', 'Workshop', 'Manufacturing'],
+    mediaLayout: 'side-by-side',
+    media: [
+      {
+        type: 'image',
+        src: '/images/lab/laser-cutter-2026-06.jpg',
+        alt: 'The new laser cutter beside a crowded workbench in the workshop',
+      },
+      {
+        type: 'video',
+        src: '/images/lab/laser-arrival-2026-06.mp4',
+        poster: '/images/lab/laser-arrival-2026-06-poster.jpg',
+        alt: 'A timelapse of the laser cutter arriving and being moved into the workshop',
+        layout: 'portrait',
+      },
+    ],
+  },
+  {
+    date: '2026-06-25',
     title: 'The room starts fighting back',
     caption:
-      'Every new tool promised to save space and somehow needed a table, three cables, and a box of its own. There was still a patch of floor, so I counted that as progress.',
+      'By June, finding space for a new tool usually meant moving three other things. I had officially run out of places to put things, but that did not stop me from adding more. There was still enough room to walk between the tools. Mostly.',
     tags: ['Workshop', 'Manufacturing'],
     media: [
       {
@@ -60,7 +82,7 @@ export const labEntries = [
     date: '2025-09-22',
     title: 'A room with potential',
     caption:
-      'At this point the workshop was one bench, one shelf, and a permanent argument with cardboard boxes. Almost everything I made still began here.',
+      'Almost everything happened on this one bench. The rest of the room was mostly storage I had not organized yet.',
     tags: ['The beginning', 'Workshop'],
     media: [
       {
